@@ -6,11 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import com.example.projectworkaprilkumak.R
+import com.example.projectworkaprilkumak.databinding.FragmentSelectCountryBinding
 import com.example.projectworkaprilkumak.databinding.ItemCountryBinding
 import com.example.projectworkaprilkumak.datas.Country
 
 class CountryAdapter(context: Context, var countries: MutableList<Country>):
     ArrayAdapter<Country>(context, R.layout.item_country, countries) {
+
 
     override fun getCount(): Int {
         return countries.size
@@ -18,6 +20,7 @@ class CountryAdapter(context: Context, var countries: MutableList<Country>):
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         var binding:ItemCountryBinding
+        var binding2:FragmentSelectCountryBinding
         if(convertView == null){
             binding = ItemCountryBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         } else{
@@ -27,9 +30,18 @@ class CountryAdapter(context: Context, var countries: MutableList<Country>):
         binding.flagImg.setImageResource(country.flag)
         binding.countryName.text = country.name
         binding.countryShortName.text = country.shortName
+        var state = true
+        binding.countryCard.setOnClickListener{
+            if(state){
+                binding.ch1.setBackgroundResource(R.drawable.checkbox_oval_checked)
+                state=false
+            }
+            else{
+                binding.ch1.setBackgroundResource(R.drawable.checkbox_oval)
+                state=true
+            }
+        }
 
-
-        binding.ch1.setOnClickListener { binding.ch1.setBackgroundResource(R.drawable.checkbox_oval_checked) }
 
         return binding.root
     }

@@ -5,6 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_marginBottom="10dp"
     app:cardCornerRadius="10dp"
+    android:id="@+id/countryCard"
     android:background="@drawable/tv_rectangle">
 
     <LinearLayout

@@ -20,6 +20,12 @@ class HomeFragment : Fragment() {
     private lateinit var adapter: MainCategoryAdapter
     private lateinit var categories: MutableList<MainCategory>
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

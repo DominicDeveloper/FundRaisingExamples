@@ -55,8 +55,6 @@ class SelectCountryFragment : Fragment() {
         adapter = CountryAdapter(requireContext(), listC)
         binding.countryList.adapter = adapter
 
-
-
         binding.continueBtn.setOnClickListener { findNavController().navigate(R.id.action_selectCountryFragment_to_fillProfile) }
 
         binding.search.addTextChangedListener {
@@ -71,9 +69,6 @@ class SelectCountryFragment : Fragment() {
                 binding.countryList.adapter = adapter
             }
         }
-
-
-
 
         return binding.root
     }

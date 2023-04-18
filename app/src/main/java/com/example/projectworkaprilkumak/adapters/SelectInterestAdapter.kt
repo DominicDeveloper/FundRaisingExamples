@@ -28,15 +28,24 @@ class SelectInterestAdapter(var interests:MutableList<SelectInterest>, var selec
         holder.in_ic.setImageResource(interest.interestIcon)
         holder.in_t.text = interest.interestText
 
-        if(selectedPos == position){
-            holder.interestMain.setCardBackgroundColor(Color.YELLOW)
-        }
+//        if(selectedPos == position){
+//            holder.interestMain.setCardBackgroundColor(Color.YELLOW)
+//        }
 
         holder.interestMain.setOnClickListener {
-            selectInterest.onInterestClick(interest, position)
-            notifyItemChanged(selectedPos)
-            selectedPos = position
-            notifyItemChanged(selectedPos)
+//            selectInterest.onInterestClick(interest, position)
+//            notifyItemChanged(selectedPos)
+//            selectedPos = position
+//            notifyItemChanged(selectedPos)
+            if (interest.status){
+                interest.status=false
+                holder.interestMain.setCardBackgroundColor(Color.parseColor("#FFFFFF"))
+
+            }else{
+                interest.status=true
+                holder.interestMain.setCardBackgroundColor(Color.YELLOW)
+
+            }
         }
 
     }
