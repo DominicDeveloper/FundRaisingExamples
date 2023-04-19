@@ -1,18 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.button.MaterialButton xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_margin="10dp"
-    app:cardCornerRadius="24dp"
+    android:id="@+id/category_main"
+    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+    android:text="Medical"
+    android:textAllCaps="false"
+    app:strokeWidth="2dp"
+    app:cornerRadius="15dp"
+    app:strokeColor="@color/theme_color"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-<TextView
-    android:id="@+id/category_t"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:text="All"
-    android:padding="10dp"
-    android:gravity="center"
-    android:background="@drawable/category_border"
-    android:textColor="@color/theme_color"
-    android:textSize="20sp"/>
-</androidx.cardview.widget.CardView>
+
+</com.google.android.material.button.MaterialButton>

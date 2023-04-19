@@ -281,6 +281,7 @@
         android:textAllCaps="false"
         android:textColor="#fff"
         android:layout_marginTop="20dp"
+        android:visibility="invisible"
         app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MyApp.Button.Circle"
         android:backgroundTint="#0BB160"
         app:layout_constraintStart_toStartOf="parent"

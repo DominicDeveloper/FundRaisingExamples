@@ -1,3 +1,14 @@
 package com.example.projectworkaprilkumak.datas
 
-data class MainCategory(var categoryName:String)
+enum class MainCategory(var categoryName:String){
+    ALL("All"),
+    MEDICAL("Medical"),
+    DISASTER("Disaster"),
+    EDUCATION("Education"),
+    INFRASTRUCTURE("Infrastructure"),
+    SICKCHILD("Sick child"),
+    ART("Art"),
+    ORPHANAGE("Orphanage"),
+    DISABLE("Disable"),
+    HUMANITY("Humanity")
+}

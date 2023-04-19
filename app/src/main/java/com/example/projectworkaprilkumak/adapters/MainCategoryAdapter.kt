@@ -6,9 +6,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.projectworkaprilkumak.databinding.ItemCategoryBinding
 import com.example.projectworkaprilkumak.datas.MainCategory
 
-class MainCategoryAdapter(var mainCategories:MutableList<MainCategory>) : RecyclerView.Adapter<MainCategoryAdapter.MainCategoryHolder>(){
+class MainCategoryAdapter(var mainCategories:Array<MainCategory>, var onClick: MyCategoryInterface) : RecyclerView.Adapter<MainCategoryAdapter.MainCategoryHolder>(){
+    var selectedPos = -1
+
     class MainCategoryHolder(binding: ItemCategoryBinding):RecyclerView.ViewHolder(binding.root){
-        var catN = binding.categoryT
+        var category_main = binding.categoryMain
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainCategoryHolder {
@@ -17,10 +19,21 @@ class MainCategoryAdapter(var mainCategories:MutableList<MainCategory>) : Recycl
 
     override fun onBindViewHolder(holder: MainCategoryHolder, position: Int) {
         var category = mainCategories[position]
-        holder.catN.text = category.categoryName
+        holder.category_main.text = category.categoryName
+
+        holder.category_main.setOnClickListener {
+            onClick.onItemClick(category, position)
+            notifyItemChanged(selectedPos);
+            selectedPos = position
+            notifyItemChanged(selectedPos);
+        }
     }
 
     override fun getItemCount(): Int {
         return mainCategories.size
+    }
+
+    interface MyCategoryInterface{
+        fun onItemClick(category: MainCategory, position: Int)
     }
 }

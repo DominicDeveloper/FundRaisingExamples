@@ -9,28 +9,35 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.example.projectworkaprilkumak.R
 import com.example.projectworkaprilkumak.adapters.MainCategoryAdapter
+import com.example.projectworkaprilkumak.adapters.UrgentFAdapter
 import com.example.projectworkaprilkumak.databinding.FragmentHomeBinding
 import com.example.projectworkaprilkumak.datas.MainCategory
+import com.example.projectworkaprilkumak.datas.UrgentFdata
 
 class HomeFragment : Fragment() {
 
-    private lateinit var adapter: MainCategoryAdapter
+    private lateinit var urgents_adapter: UrgentFAdapter
+    private lateinit var endings_adapter: UrgentFAdapter
+    private lateinit var urgents: MutableList<UrgentFdata>
+    private lateinit var endings: MutableList<UrgentFdata>
     private lateinit var categories: MutableList<MainCategory>
+    private lateinit var binding: FragmentHomeBinding
+    var selectedFilter = "all"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
-
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding = FragmentHomeBinding.inflate(inflater, container, false)
+        binding = FragmentHomeBinding.inflate(inflater, container, false)
 
 
         var toolbar: Toolbar = binding.toolbar3
@@ -40,31 +47,68 @@ class HomeFragment : Fragment() {
         activity.supportActionBar?.setDisplayHomeAsUpEnabled(true)
         activity.supportActionBar?.setDisplayShowTitleEnabled(true)
 
-        categories = mutableListOf()
-
-        categories.add(MainCategory("All"))
-        categories.add(MainCategory("Medical"))
-        categories.add(MainCategory("Disaster"))
-        categories.add(MainCategory("Education"))
-        categories.add(MainCategory("Infrastructure"))
-        categories.add(MainCategory("Sick child"))
-        categories.add(MainCategory("Art"))
-        categories.add(MainCategory("Orphanage"))
-        categories.add(MainCategory("Disable"))
-        categories.add(MainCategory("Humanity"))
+//        binding.navBar.setOnItemSelectedListener {
+//            when(it.itemId){
+//                R.id.calendar -> findNavController().navigate(R.id.action_homeFragment_to_calendarFragment)
+//                R.id.fundraising -> findNavController().navigate(R.id.action_homeFragment_to_myFundraisingFragment)
+//                R.id.chat -> findNavController().navigate(R.id.action_homeFragment_to_chatFragment)
+//                R.id.profile -> findNavController().navigate(R.id.action_homeFragment_to_profileFragment)
+//            }
+//            true
+//        }
 
 
-        adapter = MainCategoryAdapter(categories)
+        val list = loadUF()
+
+        binding.categoryRV.adapter = MainCategoryAdapter(MainCategory.values(), object : MainCategoryAdapter.MyCategoryInterface{
+            override fun onItemClick(category: MainCategory, position: Int) {
+                var categoryList = mutableListOf<UrgentFdata>()
+                list.forEach{
+                    if (it.category==category) categoryList.add(it)
+                }
+                urgents_adapter = UrgentFAdapter(categoryList)
+            binding.urgentRV.adapter = urgents_adapter
+            }
+        })
 
         binding.categoryRV.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        binding.categoryRV.adapter = adapter
 
+        val snapHelper = LinearSnapHelper()
+        snapHelper.attachToRecyclerView(binding.urgentRV)
+
+
+//        endings = mutableListOf()
+//        for (i in 1..2){
+
+//        }
+//
+//        endings_adapter = UrgentFAdapter(endings)
+//        binding.endingRV.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+//        binding.endingRV.adapter = endings_adapter
 
 
 
         return binding.root
 
     }
+
+private fun loadUF() : MutableList<UrgentFdata>{
+    urgents = mutableListOf()
+
+
+    for(i in 0..1){
+        urgents.add(UrgentFdata(R.drawable.orphanage_children, "Help Orphanage Children to..", 2379,4200,1280,19,MainCategory.HUMANITY))
+        urgents.add(UrgentFdata(R.drawable.victim_volcano, "Help Victims of the Impact...", 2777, 6310, 938, 26, MainCategory.DISASTER))
+        urgents.add(UrgentFdata(R.drawable.victim_flood, "Help Victims of Flash Flood...", 8775, 10540,4471, 9, MainCategory.DISASTER))
+        urgents.add(UrgentFdata(R.drawable.sick_baby, "Help Little Baby to Do Stomach..", 2777, 6310, 5012, 12, MainCategory.SICKCHILD))
+        urgents.add(UrgentFdata(R.drawable.cancer_child, "Help Kid to Overcome Cancer...", 3013, 4500, 2301, 2, MainCategory.SICKCHILD))
+        urgents.add(UrgentFdata(R.drawable.victim_earthquake, "Help Victims of Earthquake", 4378, 7380, 2475, 5, MainCategory.DISASTER))
+        urgents.add(UrgentFdata(R.drawable.new_school, "Help to Build a New School for kids", 5410, 12250, 3851, 3, MainCategory.INFRASTRUCTURE))
+        urgents.add(UrgentFdata(R.drawable.hungry_kids, "Help Hungry Kids", 3850, 6723, 2104, 1, MainCategory.HUMANITY))
+    }
+
+    return urgents
+}
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.main_menu, menu)
