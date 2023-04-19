@@ -1,6 +1,6 @@
 package com.example.projectworkaprilkumak.datas
 
-enum class MainCategory(var categoryName:String){
+enum class MainCategory(var categoryName:String, var status:Boolean = false){
     ALL("All"),
     MEDICAL("Medical"),
     DISASTER("Disaster"),

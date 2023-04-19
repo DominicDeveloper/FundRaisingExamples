@@ -1,5 +1,6 @@
 package com.example.projectworkaprilkumak.adapters
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -20,6 +21,8 @@ class MainCategoryAdapter(var mainCategories:Array<MainCategory>, var onClick: M
     override fun onBindViewHolder(holder: MainCategoryHolder, position: Int) {
         var category = mainCategories[position]
         holder.category_main.text = category.categoryName
+
+
 
         holder.category_main.setOnClickListener {
             onClick.onItemClick(category, position)

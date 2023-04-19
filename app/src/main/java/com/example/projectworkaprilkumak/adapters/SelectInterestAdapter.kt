@@ -8,7 +8,6 @@ import com.example.projectworkaprilkumak.databinding.ItemInterestBinding
 import com.example.projectworkaprilkumak.datas.SelectInterest
 
 class SelectInterestAdapter(var interests:MutableList<SelectInterest>, var selectInterest: InterestInterface):RecyclerView.Adapter<SelectInterestAdapter.InterestHolder>() {
-    var selectedPos = -1
 
     class InterestHolder(binding: ItemInterestBinding):RecyclerView.ViewHolder(binding.root){
         var in_ic = binding.interestIc

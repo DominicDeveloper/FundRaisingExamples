@@ -60,9 +60,16 @@ class HomeFragment : Fragment() {
 
         val list = loadUF()
 
+        urgents_adapter = UrgentFAdapter(list)
+        binding.urgentRV.adapter = urgents_adapter
+        binding.urgentRV.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+
         binding.categoryRV.adapter = MainCategoryAdapter(MainCategory.values(), object : MainCategoryAdapter.MyCategoryInterface{
             override fun onItemClick(category: MainCategory, position: Int) {
                 var categoryList = mutableListOf<UrgentFdata>()
+                if (category.categoryName=="All"){
+                    categoryList.addAll(list)
+                }
                 list.forEach{
                     if (it.category==category) categoryList.add(it)
                 }
@@ -77,14 +84,16 @@ class HomeFragment : Fragment() {
         snapHelper.attachToRecyclerView(binding.urgentRV)
 
 
-//        endings = mutableListOf()
-//        for (i in 1..2){
+        endings = mutableListOf()
+        list.forEach{
+            if (it.u_dLeft<10){
+                endings.add(it)
+            }
+        }
+        endings_adapter = UrgentFAdapter(endings)
+        binding.endingRV.adapter = endings_adapter
+        binding.endingRV.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
 
-//        }
-//
-//        endings_adapter = UrgentFAdapter(endings)
-//        binding.endingRV.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-//        binding.endingRV.adapter = endings_adapter
 
 
 
