@@ -22,7 +22,8 @@
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
                             app:navigationIcon="@drawable/logo"
-                            app:title="Wecare" />
+                            app:title="Wecare"
+                            app:titleTextColor="@color/title_color" />
 
                         <androidx.cardview.widget.CardView
                             android:id="@+id/topUpCard"
@@ -122,7 +123,7 @@
                                     android:fontFamily="@font/source_sans_pro_semibold"
                                     android:text="Urgent Fundraising"
                                     android:textColor="@color/title_color"
-                                    android:textSize="25sp"
+                                    android:textSize="18sp"
                                     android:textStyle="bold" />
 
                                 <TextView
@@ -132,7 +133,7 @@
                                     android:layout_marginLeft="100dp"
                                     android:text="See all"
                                     android:textColor="@color/theme_color"
-                                    android:textSize="20sp" />
+                                    android:textSize="16sp" />
                         </LinearLayout>
 
                                         <androidx.recyclerview.widget.RecyclerView
@@ -172,7 +173,7 @@
                                     android:fontFamily="@font/source_sans_pro_semibold"
                                     android:text="Coming to an end"
                                     android:textColor="@color/title_color"
-                                    android:textSize="25sp"
+                                    android:textSize="18sp"
                                     android:textStyle="bold" />
 
                                 <TextView
@@ -182,7 +183,7 @@
                                     android:layout_marginLeft="100dp"
                                     android:text="See all"
                                     android:textColor="@color/theme_color"
-                                    android:textSize="20sp" />
+                                    android:textSize="16sp" />
                         </LinearLayout>
 
                         <androidx.recyclerview.widget.RecyclerView
@@ -196,6 +197,87 @@
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@id/linearLayout5"
                             tools:itemCount="1" />
+
+
+                        <LinearLayout
+                            android:id="@+id/linearLayout6"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="25dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/endingRV">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/source_sans_pro_semibold"
+                                    android:text="Watch the Impact of Your Donation"
+                                    android:textColor="@color/title_color"
+                                    android:textSize="18sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/seeAll3"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="See all"
+                                    android:layout_marginStart="22dp"
+                                    android:textColor="@color/theme_color"
+                                    android:textSize="16sp" />
+                        </LinearLayout>
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/impactRV"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginBottom="20dp"
+                            tools:listitem="@layout/item_impact"
+                            android:orientation="horizontal"
+                            tools:itemCount="1"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/linearLayout6" />
+
+
+                        <LinearLayout
+                            android:id="@+id/linearLayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="25dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/impactRV">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/source_sans_pro_semibold"
+                                    android:text="Prayers from Good People"
+                                    android:textColor="@color/title_color"
+                                    android:textSize="18sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/seeAll4"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="See all"
+                                    android:layout_marginStart="22dp"
+                                    android:textColor="@color/theme_color"
+                                    android:textSize="16sp" />
+                        </LinearLayout>
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/prayersRV"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginBottom="20dp"
+                            tools:listitem="@layout/item_prayers"
+                            android:orientation="horizontal"
+                            tools:itemCount="2"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/linearLayout" />
+
 
 
                         <!--        <com.google.android.material.bottomnavigation.BottomNavigationView-->

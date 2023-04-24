@@ -12,6 +12,7 @@ class MainCategoryAdapter(var mainCategories:Array<MainCategory>, var onClick: M
 
     class MainCategoryHolder(binding: ItemCategoryBinding):RecyclerView.ViewHolder(binding.root){
         var category_main = binding.categoryMain
+        var category_text = binding.categoryText
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainCategoryHolder {
@@ -20,11 +21,23 @@ class MainCategoryAdapter(var mainCategories:Array<MainCategory>, var onClick: M
 
     override fun onBindViewHolder(holder: MainCategoryHolder, position: Int) {
         var category = mainCategories[position]
-        holder.category_main.text = category.categoryName
+        holder.category_text.text = category.categoryName
 
-
+        if(selectedPos == position){
+            if (category.status){
+                category.status = false
+                holder.category_main.setCardBackgroundColor(Color.parseColor("#1EB960"))
+                holder.category_text.setTextColor(Color.WHITE)
+            }
+        }
+        else{
+            category.status = true
+            holder.category_main.setCardBackgroundColor(Color.WHITE)
+            holder.category_text.setTextColor(Color.parseColor("#1EB960"))
+        }
 
         holder.category_main.setOnClickListener {
+
             onClick.onItemClick(category, position)
             notifyItemChanged(selectedPos);
             selectedPos = position

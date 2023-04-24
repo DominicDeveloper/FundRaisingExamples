@@ -16,12 +16,13 @@ import com.example.projectworkaprilkumak.sharedPreferences.MySharedPreferences
 
 
 class SplashFragment : Fragment() {
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
+//
+//        val file = MySharedPreferences.getInstance(requireActivity())
+//        val status:Boolean = file.getStatus()
 
 
         val getSharedPreferences = this.requireActivity().getSharedPreferences("context", Context.MODE_PRIVATE)

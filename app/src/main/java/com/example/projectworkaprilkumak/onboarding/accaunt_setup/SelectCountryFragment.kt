@@ -16,7 +16,7 @@ import com.example.projectworkaprilkumak.datas.Country
 
 
 private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+private const val ARG_PARAM2 = "param2" 
 
 class SelectCountryFragment : Fragment() {
     private var param1: String? = null

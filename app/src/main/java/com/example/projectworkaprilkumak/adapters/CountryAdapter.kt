@@ -20,7 +20,6 @@ class CountryAdapter(context: Context, var countries: MutableList<Country>):
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         var binding:ItemCountryBinding
-        var binding2:FragmentSelectCountryBinding
         if(convertView == null){
             binding = ItemCountryBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         } else{
