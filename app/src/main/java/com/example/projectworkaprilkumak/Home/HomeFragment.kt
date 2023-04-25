@@ -9,7 +9,10 @@ import androidx.fragment.app.Fragment
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.os.bundleOf
+import androidx.navigation.NavController
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
@@ -40,6 +43,9 @@ class HomeFragment : Fragment() {
     private lateinit var endings: MutableList<UrgentFdata>
     private lateinit var binding: FragmentHomeBinding
 
+    lateinit var navController: NavController
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
@@ -51,10 +57,14 @@ class HomeFragment : Fragment() {
     ): View? {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
 
+        navController = findNavController()
+        binding.navBar.setupWithNavController(navController)
 
         var toolbar: Toolbar = binding.toolbar3
         val activity: AppCompatActivity = activity as AppCompatActivity
         activity.setSupportActionBar(toolbar)
+
+
 
         activity.supportActionBar?.setDisplayHomeAsUpEnabled(true)
         activity.supportActionBar?.setDisplayShowTitleEnabled(true)

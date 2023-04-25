@@ -43,18 +43,7 @@ lateinit var context: Context
         var b_ic = binding.bIc
         var main_card = binding.mainCard
     }
-    private inner class BookmarkHolder(binding: ItemBookmarkBinding):RecyclerView.ViewHolder(binding.root){
-        var urgent_image = binding.urgentI
-        var urgent_title = binding.urgentTitle
-        var urgent_raised = binding.urgentRaisedFund
-        var urgent_toraise = binding.urgentToRaise
-        var urgent_donators = binding.urgentDonatorQuantity
-        var urgent_leftdays = binding.UrgentLeftDays
-        var b_ic = binding.bIc
-        var main_card = binding.bookmarkCard
-        var delete = binding.delete
 
-    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         if (viewType == VIEW_TYPE_ONE) {
@@ -62,12 +51,11 @@ lateinit var context: Context
                 ItemUrgentFBinding.inflate(LayoutInflater.from(parent.context), parent, false)
             )
         }
-        else if (viewType == VIEW_TYPE_TWO){
+        else {
             return UrgentAllHolder(
                 ItemUrgentBinding.inflate(LayoutInflater.from(parent.context), parent, false)
             )
         }
-        return BookmarkHolder(ItemBookmarkBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
 
     override fun getItemCount(): Int {
@@ -76,7 +64,7 @@ lateinit var context: Context
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
 
-        if (urgents[position].viewType === VIEW_TYPE_ONE){
+        if (urgents[position].viewType === VIEW_TYPE_ONE) {
             var recyclerViewModel = urgents[position]
             (holder as UrgentFHolder).urgent_image.setImageResource(recyclerViewModel.u_i)
             holder.urgent_title.text = recyclerViewModel.u_t
@@ -90,12 +78,11 @@ lateinit var context: Context
             }
 
             holder.home_card.setOnClickListener { myDonateInterface.onPress(recyclerViewModel) }
-        }
-        else if (urgents[position].viewType === VIEW_TYPE_TWO){
+        } else if (urgents[position].viewType === VIEW_TYPE_TWO) {
             var recyclerViewModel2 = urgents[position]
             (holder as UrgentAllHolder).urgent_image.setImageResource(recyclerViewModel2.u_i)
             holder.urgent_title.text = recyclerViewModel2.u_t
-            holder.urgent_raised.text= recyclerViewModel2.u_raised.toString()
+            holder.urgent_raised.text = recyclerViewModel2.u_raised.toString()
             holder.urgent_toraise.text = recyclerViewModel2.u_toRaise.toString()
             holder.urgent_donators.text = recyclerViewModel2.u_don.toString()
             holder.urgent_leftdays.text = recyclerViewModel2.u_dLeft.toString()
@@ -104,34 +91,9 @@ lateinit var context: Context
                 myBookMarkInterface.b_click(recyclerViewModel2)
             }
             holder.main_card.setOnClickListener { myDonateInterface.onPress(recyclerViewModel2) }
-        }
+        }}
 
 
-        else{
-            var recyclerViewModel3 = urgents[position]
-            (holder as BookmarkHolder).urgent_image.setImageResource(recyclerViewModel3.u_i)
-            holder.urgent_title.text = recyclerViewModel3.u_t
-            holder.urgent_raised.text= recyclerViewModel3.u_raised.toString()
-            holder.urgent_toraise.text = recyclerViewModel3.u_toRaise.toString()
-            holder.urgent_donators.text = recyclerViewModel3.u_don.toString()
-            holder.urgent_leftdays.text = recyclerViewModel3.u_dLeft.toString()
-
-            holder.b_ic.setOnClickListener { myBookMarkInterface.b_click(recyclerViewModel3) }
-            holder.main_card.setOnClickListener { myDonateInterface.onPress(recyclerViewModel3) }
-            holder.delete.setOnClickListener{
-                  urgents.removeAt(position)
-                notifyItemRemoved(position)
-                notifyItemChanged(position, urgents.size)
-//                var file = MySharedPreferences.getInstance(context)
-//                file.setPost(urgents)
-            }
-
-
-
-        }
-
-
-    }
 
     override fun getItemViewType(position: Int): Int {
         return urgents[position].viewType

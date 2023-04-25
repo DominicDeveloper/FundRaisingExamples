@@ -20,6 +20,7 @@
         app:titleTextColor="@color/title_color" />
 
 
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/add_fab"
         android:layout_width="wrap_content"
@@ -33,15 +34,17 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-            <com.google.android.material.bottomnavigation.BottomNavigationView
-                android:id="@+id/navBar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                android:scrollIndicators="left"
-                app:menu="@menu/navbar" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/myFundraisingRV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:listitem="@layout/item_myfundraising"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar3" />
+
+
+
 
 
 
