@@ -13,6 +13,7 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.example.projectworkaprilkumak.R
 import com.example.projectworkaprilkumak.sharedPreferences.MySharedPreferences
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
 class SplashFragment : Fragment() {
@@ -36,6 +37,12 @@ class SplashFragment : Fragment() {
                 findNavController().navigate(R.id.action_splashFragment_to_signInFragment)
             }, 3000)
         }
+//masalan shunda
+
+        // endi umuman o'zi ham chiqmayapti
+        // bu fragment uchun yoqoldimi bottomNav
+
+            // nafaqat bunda, balki hamma joyda yoq, ok
 
         return inflater.inflate(R.layout.fragment_splash, container, false)
     }

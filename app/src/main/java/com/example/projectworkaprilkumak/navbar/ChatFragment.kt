@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.projectworkaprilkumak.R
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class ChatFragment : Fragment() {
 
@@ -14,6 +15,7 @@ class ChatFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_chat, container, false)
+
     }
 
 }

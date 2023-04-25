@@ -26,6 +26,7 @@ import com.example.projectworkaprilkumak.datas.ImpactData
 import com.example.projectworkaprilkumak.datas.MainCategory
 import com.example.projectworkaprilkumak.datas.Prayers
 import com.example.projectworkaprilkumak.datas.UrgentFdata
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class HomeFragment : Fragment() {
 
@@ -43,7 +44,6 @@ class HomeFragment : Fragment() {
     private lateinit var endings: MutableList<UrgentFdata>
     private lateinit var binding: FragmentHomeBinding
 
-    lateinit var navController: NavController
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -57,27 +57,21 @@ class HomeFragment : Fragment() {
     ): View? {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
 
-        navController = findNavController()
-        binding.navBar.setupWithNavController(navController)
+        // mainActivity da ulasaiz bomaydimi
+
+        // main da ulash kkMi?
+        //ha
+
+        // navbarni ham activity-main ga qo'yish kkmi, ha.
+
 
         var toolbar: Toolbar = binding.toolbar3
         val activity: AppCompatActivity = activity as AppCompatActivity
         activity.setSupportActionBar(toolbar)
 
 
-
         activity.supportActionBar?.setDisplayHomeAsUpEnabled(true)
         activity.supportActionBar?.setDisplayShowTitleEnabled(true)
-
-//        binding.navBar.setOnItemSelectedListener {
-//            when(it.itemId){
-//                R.id.calendar -> findNavController().navigate(R.id.action_homeFragment_to_calendarFragment)
-//                R.id.fundraising -> findNavController().navigate(R.id.action_homeFragment_to_myFundraisingFragment)
-//                R.id.chat -> findNavController().navigate(R.id.action_homeFragment_to_chatFragment)
-//                R.id.profile -> findNavController().navigate(R.id.action_homeFragment_to_profileFragment)
-//            }
-//            true
-//        }
 
 
         bookmarkedList = arrayListOf()

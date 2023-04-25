@@ -43,25 +43,30 @@ class FillProfile : Fragment() {
         var edit = sharedPreferences.edit()
         var gson = Gson()
         var type = object : TypeToken<List<Profile>>() {}.type
+
+
+        var gender = binding.spinner.selectedItem.toString()
+
+
         binding.continueBtn.setOnClickListener {
             var profilers = sharedPreferences.getString("profiles", "")
             if (profilers == ""){
                 userList.add(Profile(binding.profileName.text.toString(),
                     binding.profileEmail.text.toString(),
                     binding.profilePhoneNumber.text.toString(),
-                    binding.profileGender.text.toString(),
+                    gender,
                     binding.profileCity.text.toString()))
                 val str = gson.toJson(userList)
                 edit.putString("profiles", str).commit()
             } else{
                 userList = gson.fromJson(profilers, type)
 
-                    userList.add(Profile(binding.profileName.text.toString(), binding.profileEmail.text.toString(),
-                    binding.profilePhoneNumber.text.toString(), binding.profileGender.text.toString(), binding.profileCity.text.toString()))
+                userList.add(Profile(binding.profileName.text.toString(), binding.profileEmail.text.toString(),
+                    binding.profilePhoneNumber.text.toString(), gender, binding.profileCity.text.toString()))
                     Toast.makeText(requireContext(), "Successfully registered", Toast.LENGTH_SHORT).show()
                     val str = gson.toJson(userList)
                     edit.putString("profiles", str).commit()
-                    findNavController().navigate(R.id.action_signUpFragment_to_selectCountryFragment)
+                    findNavController().navigate(R.id.action_fillProfile_to_selectInterestFragment)
 
             }
         }

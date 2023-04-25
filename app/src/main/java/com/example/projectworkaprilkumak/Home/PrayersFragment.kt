@@ -27,7 +27,10 @@ class PrayersFragment : Fragment() {
     ): View? {
         binding = FragmentPrayersBinding.inflate(inflater, container, false)
 
+        requireActivity()
 
+        // buyogamas
+        //navbar package ni ichidagilarga
         var toolbar: Toolbar = binding.toolbar
         val activity: AppCompatActivity = activity as AppCompatActivity
         activity.setSupportActionBar(toolbar)
