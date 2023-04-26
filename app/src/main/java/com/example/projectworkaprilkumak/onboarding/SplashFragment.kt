@@ -30,19 +30,13 @@ class SplashFragment : Fragment() {
         val state = getSharedPreferences.getBoolean("state", false)
         if (!state){
             Handler(Looper.getMainLooper()).postDelayed({
-                findNavController().navigate(R.id.action_splashFragment_to_intro1Fragment)
+                findNavController().navigate(R.id.action_splashFragment_to_viewPagerFragment)
             }, 3000)
         } else{
             Handler(Looper.getMainLooper()).postDelayed({
                 findNavController().navigate(R.id.action_splashFragment_to_signInFragment)
             }, 3000)
         }
-//masalan shunda
-
-        // endi umuman o'zi ham chiqmayapti
-        // bu fragment uchun yoqoldimi bottomNav
-
-            // nafaqat bunda, balki hamma joyda yoq, ok
 
         return inflater.inflate(R.layout.fragment_splash, container, false)
     }

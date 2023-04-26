@@ -1,14 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".onboarding.Intro1Fragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
         <ImageView
             android:id="@+id/pic1"
@@ -27,7 +22,6 @@
             android:layout_marginTop="350dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:background="@drawable/bottom_bg_intro1"
             android:padding="10dp">
 
             <View
@@ -37,6 +31,7 @@
                 android:background="@drawable/line" />
 
             <TextView
+                android:id="@+id/v_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="25dp"
@@ -47,6 +42,7 @@
                 android:textSize="25sp" />
 
             <TextView
+                android:id="@+id/v_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Lorem ipsum was fjakfja af akfaj afkdafjj conceived as filler text, formatted in a certain way"
@@ -56,31 +52,7 @@
                 android:gravity="center"
                 android:layout_marginTop="20dp" />
 
-            <Button
-                android:id="@+id/skip"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                style="@style/Widget.MaterialComponents.Button.TextButton"
-                android:text="Skip"
-                android:textAllCaps="false"
-                android:textColor="#0BB160"
-                android:layout_marginTop="20dp"
-                android:layout_gravity="center" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/next"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:text="Next"
-                android:textAllCaps="false"
-                android:textColor="#fff"
-                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MyApp.Button.Circle"
-                android:backgroundTint="#0BB160" />
-
-
         </LinearLayout>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-</ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

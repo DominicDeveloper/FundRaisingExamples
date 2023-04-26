@@ -54,7 +54,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.chatFragment -> binding.navBar.visibility = View.VISIBLE
                 R.id.profileFragment -> binding.navBar.visibility = View.VISIBLE
                 R.id.calendarFragment -> binding.navBar.visibility = View.VISIBLE
-                R.id.myFundraisingFragment -> binding.navBar.visibility = View.VISIBLE // bu fragmetnlar tori yozidimi nomi
+                R.id.myFundraisingFragment -> binding.navBar.visibility = View.VISIBLE
 
                 else -> binding.navBar.visibility = View.GONE
             }

@@ -10,48 +10,13 @@
         android:label="fragment_splash"
         tools:layout="@layout/fragment_splash" >
         <action
-            android:id="@+id/action_splashFragment_to_intro1Fragment"
-            app:destination="@id/intro1Fragment" />
+            android:id="@+id/action_splashFragment_to_viewPagerFragment"
+            app:destination="@id/viewPagerFragment" />
         <action
             android:id="@+id/action_splashFragment_to_signInFragment"
             app:destination="@id/signInFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/intro1Fragment"
-        android:name="com.example.projectworkaprilkumak.onboarding.Intro1Fragment"
-        android:label="fragment_intro1"
-        tools:layout="@layout/fragment_intro1" >
-        <action
-            android:id="@+id/action_intro1Fragment_to_intro2Fragment"
-            app:destination="@id/intro2Fragment" />
-        <action
-            android:id="@+id/action_intro1Fragment_to_welcomeFragment"
-            app:destination="@id/welcomeFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/intro2Fragment"
-        android:name="com.example.projectworkaprilkumak.onboarding.Intro2Fragment"
-        android:label="fragment_intro2"
-        tools:layout="@layout/fragment_intro2" >
-        <action
-            android:id="@+id/action_intro2Fragment_to_intro3Fragment"
-            app:destination="@id/intro3Fragment" />
-        <action
-            android:id="@+id/action_intro2Fragment_to_welcomeFragment"
-            app:destination="@id/welcomeFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/intro3Fragment"
-        android:name="com.example.projectworkaprilkumak.onboarding.Intro3Fragment"
-        android:label="fragment_intro3"
-        tools:layout="@layout/fragment_intro3" >
-        <action
-            android:id="@+id/action_intro3Fragment_to_signInFragment"
-            app:destination="@id/signInFragment" />
-        <action
-            android:id="@+id/action_intro3Fragment_to_welcomeFragment"
-            app:destination="@id/welcomeFragment" />
-    </fragment>
+
     <fragment
         android:id="@+id/welcomeFragment"
         android:name="com.example.projectworkaprilkumak.onboarding.WelcomeFragment"
@@ -482,4 +447,9 @@
             android:id="@+id/action_walletCenterFragment_to_topUpFragment"
             app:destination="@id/topUpFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/viewPagerFragment"
+        android:name="com.example.projectworkaprilkumak.onboarding.ViewPagerFragment"
+        android:label="fragment_view_pager"
+        tools:layout="@layout/fragment_view_pager" />
 </navigation>
