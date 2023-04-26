@@ -2,10 +2,12 @@ package com.example.projectworkaprilkumak.onboarding.accaunt_setup
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -21,6 +23,7 @@ import com.google.gson.reflect.TypeToken
 
 class FillProfile : Fragment() {
 
+    private lateinit var gender:String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,7 +31,6 @@ class FillProfile : Fragment() {
     ): View? {
 
         val binding = FragmentFillProfileBinding.inflate(inflater, container, false)
-        binding.continueBtn.setOnClickListener { findNavController().navigate(R.id.action_fillProfile_to_selectInterestFragment) }
 
         var toolbar: Toolbar = binding.toolbar
         val activity : AppCompatActivity = activity as AppCompatActivity
@@ -44,9 +46,12 @@ class FillProfile : Fragment() {
         var gson = Gson()
         var type = object : TypeToken<List<Profile>>() {}.type
 
-
-        var gender = binding.spinner.selectedItem.toString()
-
+        var list = listOf("male", "female")
+        val adapter = ArrayAdapter(requireContext(), R.layout.list_item_dropdown, list)
+        binding.dropDownValue.setAdapter(adapter)
+        binding.dropDownValue.setOnItemClickListener { adapterView, view, i, l ->
+            gender = list[i]
+        }
 
         binding.continueBtn.setOnClickListener {
             var profilers = sharedPreferences.getString("profiles", "")
@@ -72,7 +77,7 @@ class FillProfile : Fragment() {
         }
 
 
-        toolbar.setNavigationOnClickListener { findNavController().navigate(R.id.action_fillProfile_to_selectCountryFragment) }
+        toolbar.setNavigationOnClickListener { findNavController().navigateUp() }
 
 
 

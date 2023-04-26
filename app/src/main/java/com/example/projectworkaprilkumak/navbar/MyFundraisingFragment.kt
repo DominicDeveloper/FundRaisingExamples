@@ -85,16 +85,13 @@ class MyFundraisingFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
             R.id.bookmark -> {
-//                Log.d("MyDataB", "${bookmarkedList}")
-//                val bundle = Bundle()
-//                bundle.putSerializable("bookmarkedList", bookmarkedList as ArrayList)
-                findNavController().navigate(R.id.action_homeFragment_to_bookmarkFragment)
+                findNavController().navigate(R.id.action_myFundraisingFragment_to_bookmarkFragment)
             }
             R.id.notification -> {
-                Toast.makeText(requireContext(), "This is notification", Toast.LENGTH_SHORT)
+                findNavController().navigate(R.id.action_myFundraisingFragment_to_notificationFragment)
             }
             R.id.search ->{
-                findNavController().navigate(R.id.action_homeFragment_to_searchFragment)
+                findNavController().navigate(R.id.action_myFundraisingFragment_to_searchFragment)
             }
         }
 

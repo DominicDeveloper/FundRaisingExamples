@@ -21,10 +21,6 @@ class ProfileFragment : Fragment() {
 
     private lateinit var binding: FragmentProfileBinding
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setHasOptionsMenu(true)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -61,28 +57,6 @@ class ProfileFragment : Fragment() {
         return binding.root
     }
 
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.main_menu, menu)
-        super.onCreateOptionsMenu(menu, inflater)
-    }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when(item.itemId){
-            R.id.bookmark -> {
-//                Log.d("MyDataB", "${bookmarkedList}")
-//                val bundle = Bundle()
-//                bundle.putSerializable("bookmarkedList", bookmarkedList as ArrayList)
-                findNavController().navigate(R.id.action_homeFragment_to_bookmarkFragment)
-            }
-            R.id.notification -> {
-                Toast.makeText(requireContext(), "This is notification", Toast.LENGTH_SHORT)
-            }
-            R.id.search ->{
-                findNavController().navigate(R.id.action_homeFragment_to_searchFragment)
-            }
-        }
-
-        return super.onOptionsItemSelected(item)
-    }
 
 }
