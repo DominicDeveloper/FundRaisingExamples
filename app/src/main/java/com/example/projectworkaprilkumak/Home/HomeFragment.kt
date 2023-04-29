@@ -57,12 +57,7 @@ class HomeFragment : Fragment() {
     ): View? {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
 
-        // mainActivity da ulasaiz bomaydimi
 
-        // main da ulash kkMi?
-        //ha
-
-        // navbarni ham activity-main ga qo'yish kkmi, ha.
 
 
         var toolbar: Toolbar = binding.toolbar3
