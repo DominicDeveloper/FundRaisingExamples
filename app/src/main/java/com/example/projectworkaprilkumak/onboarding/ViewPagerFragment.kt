@@ -5,14 +5,22 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
+import android.widget.TableLayout
+import android.widget.Toast
+import androidx.navigation.fragment.findNavController
+import androidx.viewpager2.widget.ViewPager2
 import com.example.projectworkaprilkumak.R
 import com.example.projectworkaprilkumak.adapters.ViewPagerAdapter
 import com.example.projectworkaprilkumak.databinding.FragmentViewPagerBinding
 import com.example.projectworkaprilkumak.datas.ViewPagerData
+import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.coroutines.flow.combine
 
 
 class ViewPagerFragment : Fragment() {
+
 
     private lateinit var binding: FragmentViewPagerBinding
 
@@ -35,6 +43,48 @@ class ViewPagerFragment : Fragment() {
 
         binding.viewpager.adapter = ViewPagerAdapter(vlist)
 
+        TabLayoutMediator(binding.tabLayout, binding.viewpager){tab, position ->}.attach()
+
+        binding.viewpager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+                super.onPageSelected(position)
+                if(position== MAX_STEP-1){
+                    binding.next.text = "Get Started"
+                    binding.next.contentDescription = "Get Started"
+                } else{
+                    binding.next.text = "Next"
+                    binding.next.contentDescription = "Next"
+                }
+            }
+        })
+
+        binding.skip.setOnClickListener {
+            findNavController().navigate(R.id.action_viewPagerFragment_to_welcomeFragment)
+        }
+
+        binding.next.setOnClickListener {
+            if (binding.next.text.toString()=="Get Started"){
+                findNavController().navigate(R.id.action_viewPagerFragment_to_welcomeFragment)
+            } else{
+                val current = binding.viewpager.currentItem + 1
+                binding.viewpager.currentItem = current
+
+                if (current>= MAX_STEP-1){
+                    binding.next.text = "Get Started"
+                    binding.next.contentDescription = "Get Started"
+                } else{
+                    binding.next.text = "Next"
+                    binding.next.contentDescription = "Next"
+                }
+            }
+        }
+
+
 
     }
+
+    companion object{
+        const val MAX_STEP = 3
+    }
+
 }
