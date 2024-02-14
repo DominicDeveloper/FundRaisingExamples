@@ -72,7 +72,6 @@ class FillProfile : Fragment() {
                     val str = gson.toJson(userList)
                     edit.putString("profiles", str).commit()
                     findNavController().navigate(R.id.action_fillProfile_to_selectInterestFragment)
-
             }
         }
 
