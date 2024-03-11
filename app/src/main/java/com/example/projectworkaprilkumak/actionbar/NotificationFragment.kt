@@ -33,6 +33,8 @@ class NotificationFragment : Fragment() {
         activity.supportActionBar?.setDisplayHomeAsUpEnabled(true)
         activity.supportActionBar?.setDisplayShowTitleEnabled(true)
 
+
+
         toolbar.setNavigationOnClickListener { findNavController().navigateUp() }
 
 
@@ -42,3 +44,4 @@ class NotificationFragment : Fragment() {
     }
 
 }
+

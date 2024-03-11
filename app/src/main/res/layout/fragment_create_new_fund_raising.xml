@@ -30,14 +30,29 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/toolbar"
         android:padding="15dp">
+
+
         <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/img"
+            android:id="@+id/add_pic"
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:src="@drawable/help_malnutrition"
             android:adjustViewBounds="true"
             android:scaleType="centerCrop"
             app:shapeAppearanceOverlay="@style/roundimageview"/>
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/add_pic_btn"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:text="Add Photo"
+            android:textAllCaps="false"
+            android:textColor="#fff"
+            android:layout_marginTop="20dp"
+            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MyApp.Button.Circle"
+            android:backgroundTint="#0BB160"/>
+
+
 
         <View
             android:layout_width="match_parent"
