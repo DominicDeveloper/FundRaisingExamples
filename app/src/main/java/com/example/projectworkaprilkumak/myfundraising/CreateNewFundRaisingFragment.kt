@@ -65,6 +65,7 @@ class CreateNewFundRaisingFragment : Fragment() {
 
 
 
+
         return binding.root
 
     }
