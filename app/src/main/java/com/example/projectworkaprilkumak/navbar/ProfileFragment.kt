@@ -33,10 +33,13 @@ class ProfileFragment : Fragment() {
         val activity : AppCompatActivity = activity as AppCompatActivity
         activity.setSupportActionBar(toolbar)
 
+
+
         activity.supportActionBar?.setDisplayHomeAsUpEnabled(true)
         activity.supportActionBar?.setDisplayShowTitleEnabled(true)
 
         toolbar.setNavigationOnClickListener { findNavController().navigateUp() }
+
 
 
         var sharedPreferences = this.requireActivity().getSharedPreferences("register", Context.MODE_PRIVATE)
