@@ -334,7 +334,7 @@
             app:shapeAppearance="@style/editStyle">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/document"
+                android:id="@+id/donationProposalDoc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 

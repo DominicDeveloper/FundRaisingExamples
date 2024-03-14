@@ -46,7 +46,7 @@ class MyFundraisingFragment : Fragment() {
         binding.myFundraisingRV.adapter = adapter
         binding.myFundraisingRV.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
 
-        binding.addFab.setOnClickListener { findNavController().navigate(R.id.action_myFundraisingFragment_to_editMyFundraisingFragment) }
+        binding.addFab.setOnClickListener { findNavController().navigate(R.id.createNewFundRaisingFragment) }
 
 
      return binding.root
