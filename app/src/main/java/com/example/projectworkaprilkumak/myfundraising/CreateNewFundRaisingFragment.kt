@@ -31,16 +31,20 @@ class CreateNewFundRaisingFragment : Fragment() {
     private lateinit var addImageView: ImageView
     private lateinit var addImageViewButton: Button
     private lateinit var toolbar: Toolbar
+    private lateinit var myFundraisingList: MutableList<MyFundraisingData>
+    private lateinit var imageUri: Uri
 
     companion object{
         const val IMAGE_REQUEST_CODE = 100
     }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
 
         binding = FragmentCreateNewFundRaisingBinding.inflate(inflater, container, false)
+
 
         toolbar = binding.toolbar
         val activity : AppCompatActivity = activity as AppCompatActivity
@@ -61,6 +65,7 @@ class CreateNewFundRaisingFragment : Fragment() {
             category = categories[i]
         }
 
+
         addImageViewButton.setOnClickListener {
             pickImageGallery()
         }
@@ -71,6 +76,12 @@ class CreateNewFundRaisingFragment : Fragment() {
 
         binding.medDoc.setOnClickListener {
             showFileChooser()
+        }
+
+
+////////////////////////////////
+        binding.continueBtn.setOnClickListener {
+            myFundraisingList.add(MyFundraisingData(addImageView.base   , "55", 55, 55, 55, 55, category))
         }
 
 
@@ -89,9 +100,11 @@ class CreateNewFundRaisingFragment : Fragment() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
+
         if (requestCode == IMAGE_REQUEST_CODE && resultCode == RESULT_OK){
             addImageView.setImageURI(data?.data)
         }
+
         if(requestCode == 100 && resultCode == RESULT_OK && data != null){
             val uri: Uri? = data.data
             val path: String = uri?.path.toString()
