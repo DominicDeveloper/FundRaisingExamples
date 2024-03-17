@@ -9,12 +9,7 @@
         android:name="com.example.projectworkaprilkumak.onboarding.SplashFragment"
         android:label="fragment_splash"
         tools:layout="@layout/fragment_splash" >
-        <action
-            android:id="@+id/action_splashFragment_to_viewPagerFragment"
-            app:destination="@id/viewPagerFragment" />
-        <action
-            android:id="@+id/action_splashFragment_to_signInFragment"
-            app:destination="@id/signInFragment" />
+
     </fragment>
 
     <fragment
@@ -22,93 +17,34 @@
         android:name="com.example.projectworkaprilkumak.onboarding.WelcomeFragment"
         android:label="fragment_welcome"
         tools:layout="@layout/fragment_welcome" >
-        <action
-            android:id="@+id/action_welcomeFragment_to_signInFragment"
-            app:destination="@id/signInFragment" />
-        <action
-            android:id="@+id/action_welcomeFragment_to_signUpFragment"
-            app:destination="@id/signUpFragment" />
+
     </fragment>
     <fragment
         android:id="@+id/signInFragment"
         android:name="com.example.projectworkaprilkumak.onboarding.SignInFragment"
         android:label="fragment_sign_in"
         tools:layout="@layout/fragment_sign_in" >
-        <action
-            android:id="@+id/action_signInFragment_to_signUpFragment"
-            app:destination="@id/signUpFragment" />
-        <action
-            android:id="@+id/action_signInFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
+
     </fragment>
     <fragment
         android:id="@+id/signUpFragment"
         android:name="com.example.projectworkaprilkumak.onboarding.SignUpFragment"
         android:label="fragment_sign_up"
         tools:layout="@layout/fragment_sign_up" >
-        <action
-            android:id="@+id/action_signUpFragment_to_selectCountryFragment"
-            app:destination="@id/selectCountryFragment" />
-        <action
-            android:id="@+id/action_signUpFragment_to_signInFragment"
-            app:destination="@id/signInFragment" />
+
     </fragment>
     <fragment
         android:id="@+id/selectCountryFragment"
         android:name="com.example.projectworkaprilkumak.onboarding.accaunt_setup.SelectCountryFragment"
         android:label="fragment_select_country"
         tools:layout="@layout/fragment_select_country" >
-        <action
-            android:id="@+id/action_selectCountryFragment_to_fillProfile"
-            app:destination="@id/fillProfile" />
-        <action
-            android:id="@+id/action_selectCountryFragment_to_signUpFragment"
-            app:destination="@id/signUpFragment" />
+
     </fragment>
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.example.projectworkaprilkumak.Home.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
-        <action
-            android:id="@+id/action_homeFragment_to_bookmarkFragment"
-            app:destination="@id/bookmarkFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_searchFragment"
-            app:destination="@id/searchFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_calendarFragment"
-            app:destination="@id/calendarFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_chatFragment"
-            app:destination="@id/chatFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_myFundraisingFragment"
-            app:destination="@id/myFundraisingFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_profileFragment"
-            app:destination="@id/profileFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_urgentFragment"
-            app:destination="@id/urgentFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_endingFragment"
-            app:destination="@id/endingFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_impactFragment"
-            app:destination="@id/impactFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_prayersFragment"
-            app:destination="@id/prayersFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_donationDetailsFragment"
-            app:destination="@id/donationDetailsFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_allImpactsFragment"
-            app:destination="@id/allImpactsFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_notificationFragment"
-            app:destination="@id/notificationFragment" />
 
     </fragment>
     <fragment
@@ -116,288 +52,140 @@
         android:name="com.example.projectworkaprilkumak.onboarding.accaunt_setup.FillProfile"
         android:label="fragment_fill_profile"
         tools:layout="@layout/fragment_fill_profile" >
-        <action
-            android:id="@+id/action_fillProfile_to_selectInterestFragment"
-            app:destination="@id/selectInterestFragment" />
-        <action
-            android:id="@+id/action_fillProfile_to_selectCountryFragment"
-            app:destination="@id/selectCountryFragment" />
+
     </fragment>
     <fragment
         android:id="@+id/selectInterestFragment"
         android:name="com.example.projectworkaprilkumak.onboarding.accaunt_setup.SelectInterestFragment"
         android:label="fragment_select_interest"
         tools:layout="@layout/fragment_select_interest" >
-        <action
-            android:id="@+id/action_selectInterestFragment_to_createPinFragment"
-            app:destination="@id/createPinFragment" />
-        <action
-            android:id="@+id/action_selectInterestFragment_to_fillProfile"
-            app:destination="@id/fillProfile" />
+
     </fragment>
     <fragment
         android:id="@+id/createPinFragment"
         android:name="com.example.projectworkaprilkumak.onboarding.accaunt_setup.CreatePinFragment"
         android:label="fragment_create_pin"
         tools:layout="@layout/fragment_create_pin" >
-        <action
-            android:id="@+id/action_createPinFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
-        <action
-            android:id="@+id/action_createPinFragment_to_selectInterestFragment"
-            app:destination="@id/selectInterestFragment" />
+
     </fragment>
     <fragment
         android:id="@+id/bookmarkFragment"
         android:name="com.example.projectworkaprilkumak.actionbar.BookmarkFragment"
         android:label="fragment_bookmark"
         tools:layout="@layout/fragment_bookmark" >
-        <action
-            android:id="@+id/action_bookmarkFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
-        <action
-            android:id="@+id/action_bookmarkFragment_to_donationDetailsFragment"
-            app:destination="@id/donationDetailsFragment" />
+
     </fragment>
     <fragment
         android:id="@+id/searchFragment"
         android:name="com.example.projectworkaprilkumak.actionbar.SearchFragment"
         android:label="fragment_search"
         tools:layout="@layout/fragment_search" >
-        <action
-            android:id="@+id/action_searchFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
-        <action
-            android:id="@+id/action_searchFragment_to_donationDetailsFragment"
-            app:destination="@id/donationDetailsFragment" />
-        <action
-            android:id="@+id/action_searchFragment_to_bookmarkFragment"
-            app:destination="@id/bookmarkFragment" />
+
     </fragment>
     <fragment
         android:id="@+id/calendarFragment"
         android:name="com.example.projectworkaprilkumak.navbar.CalendarFragment"
         android:label="fragment_calendar"
         tools:layout="@layout/fragment_calendar" >
-        <action
-            android:id="@+id/action_calendarFragment_to_bookmarkFragment"
-            app:destination="@id/bookmarkFragment" />
-        <action
-            android:id="@+id/action_calendarFragment_to_searchFragment"
-            app:destination="@id/searchFragment" />
-        <action
-            android:id="@+id/action_calendarFragment_to_notificationFragment"
-            app:destination="@id/notificationFragment" />
+
     </fragment>
     <fragment
         android:id="@+id/chatFragment"
         android:name="com.example.projectworkaprilkumak.navbar.ChatFragment"
         android:label="fragment_chat"
         tools:layout="@layout/fragment_chat" >
-        <action
-            android:id="@+id/action_chatFragment_to_bookmarkFragment"
-            app:destination="@id/bookmarkFragment" />
-        <action
-            android:id="@+id/action_chatFragment_to_searchFragment"
-            app:destination="@id/searchFragment" />
-        <action
-            android:id="@+id/action_chatFragment_to_notificationFragment"
-            app:destination="@id/notificationFragment" />
+
     </fragment>
     <fragment
         android:id="@+id/myFundraisingFragment"
         android:name="com.example.projectworkaprilkumak.navbar.MyFundraisingFragment"
         android:label="fragment_my_fundraising"
         tools:layout="@layout/fragment_my_fundraising" >
-        <action
-            android:id="@+id/action_myFundraisingFragment_to_createNewFundRaisingFragment"
-            app:destination="@id/createNewFundRaisingFragment" />
-        <action
-            android:id="@+id/action_myFundraisingFragment_to_editMyFundraisingFragment"
-            app:destination="@id/editMyFundraisingFragment" />
-        <action
-            android:id="@+id/action_myFundraisingFragment_to_seeResultsFragment"
-            app:destination="@id/seeResultsFragment" />
-        <action
-            android:id="@+id/action_myFundraisingFragment_to_bookmarkFragment"
-            app:destination="@id/bookmarkFragment" />
-        <action
-            android:id="@+id/action_myFundraisingFragment_to_searchFragment"
-            app:destination="@id/searchFragment" />
-        <action
-            android:id="@+id/action_myFundraisingFragment_to_notificationFragment"
-            app:destination="@id/notificationFragment" />
+
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.example.projectworkaprilkumak.navbar.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" >
-        <action
-            android:id="@+id/action_profileFragment_to_myFundraisingFragment"
-            app:destination="@id/myFundraisingFragment" />
-        <action
-            android:id="@+id/action_profileFragment_to_chatFragment"
-            app:destination="@id/chatFragment" />
-        <action
-            android:id="@+id/action_profileFragment_to_calendarFragment"
-            app:destination="@id/calendarFragment" />
-        <action
-            android:id="@+id/action_profileFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
-        <action
-            android:id="@+id/action_profileFragment_to_topUpFragment"
-            app:destination="@id/topUpFragment" />
-        <action
-            android:id="@+id/action_profileFragment_to_walletCenterFragment"
-            app:destination="@id/walletCenterFragment" />
-        <action
-            android:id="@+id/action_profileFragment_to_bookmarkFragment"
-            app:destination="@id/bookmarkFragment" />
-        <action
-            android:id="@+id/action_profileFragment_to_searchFragment"
-            app:destination="@id/searchFragment" />
-        <action
-            android:id="@+id/action_profileFragment_to_notificationFragment"
-            app:destination="@id/notificationFragment" />
+
     </fragment>
     <fragment
         android:id="@+id/endingFragment"
         android:name="com.example.projectworkaprilkumak.Home.EndingFragment"
         android:label="fragment_ending"
         tools:layout="@layout/fragment_ending" >
-        <action
-            android:id="@+id/action_endingFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
-        <action
-            android:id="@+id/action_endingFragment_to_donationDetailsFragment"
-            app:destination="@id/donationDetailsFragment" />
-        <action
-            android:id="@+id/action_endingFragment_to_bookmarkFragment"
-            app:destination="@id/bookmarkFragment" />
+
     </fragment>
     <fragment
         android:id="@+id/impactFragment"
         android:name="com.example.projectworkaprilkumak.Home.ImpactFragment"
         android:label="fragment_impact"
         tools:layout="@layout/fragment_impact" >
-        <action
-            android:id="@+id/action_impactFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
-        <action
-            android:id="@+id/action_impactFragment_to_allImpactsFragment"
-            app:destination="@id/allImpactsFragment" />
+
     </fragment>
     <fragment
         android:id="@+id/prayersFragment"
         android:name="com.example.projectworkaprilkumak.Home.PrayersFragment"
         android:label="fragment_prayers"
         tools:layout="@layout/fragment_prayers" >
-        <action
-            android:id="@+id/action_prayersFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
+
     </fragment>
     <fragment
         android:id="@+id/urgentFragment"
         android:name="com.example.projectworkaprilkumak.Home.UrgentFragment"
         android:label="fragment_urgent"
         tools:layout="@layout/fragment_urgent" >
-        <action
-            android:id="@+id/action_urgentFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
-        <action
-            android:id="@+id/action_urgentFragment_to_donationDetailsFragment"
-            app:destination="@id/donationDetailsFragment" />
-        <action
-            android:id="@+id/action_urgentFragment_to_bookmarkFragment"
-            app:destination="@id/bookmarkFragment" />
+
     </fragment>
     <fragment
         android:id="@+id/donationDetailsFragment"
         android:name="com.example.projectworkaprilkumak.donation_details.DonationDetailsFragment"
         android:label="fragment_donation_details"
         tools:layout="@layout/fragment_donation_details" >
-        <action
-            android:id="@+id/action_donationDetailsFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
-        <action
-            android:id="@+id/action_donationDetailsFragment_to_urgentFragment"
-            app:destination="@id/urgentFragment" />
-        <action
-            android:id="@+id/action_donationDetailsFragment_to_endingFragment"
-            app:destination="@id/endingFragment" />
-        <action
-            android:id="@+id/action_donationDetailsFragment_to_donateFragment"
-            app:destination="@id/donateFragment" />
-        <action
-            android:id="@+id/action_donationDetailsFragment_self"
-            app:destination="@id/donationDetailsFragment" />
+
     </fragment>
     <fragment
         android:id="@+id/donateFragment"
         android:name="com.example.projectworkaprilkumak.donation_details.DonateFragment"
         android:label="fragment_donate"
         tools:layout="@layout/fragment_donate" >
-        <action
-            android:id="@+id/action_donateFragment_to_donationDetailsFragment"
-            app:destination="@id/donationDetailsFragment" />
-        <action
-            android:id="@+id/action_donateFragment_to_enterPinFragment"
-            app:destination="@id/enterPinFragment" />
+
     </fragment>
     <fragment
         android:id="@+id/enterPinFragment"
         android:name="com.example.projectworkaprilkumak.donation_details.EnterPinFragment"
         android:label="fragment_enter_pin"
         tools:layout="@layout/fragment_enter_pin" >
-        <action
-            android:id="@+id/action_enterPinFragment_to_donateFragment"
-            app:destination="@id/donateFragment" />
-        <action
-            android:id="@+id/action_enterPinFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
+
     </fragment>
     <fragment
         android:id="@+id/allImpactsFragment"
         android:name="com.example.projectworkaprilkumak.Home.AllImpactsFragment"
         android:label="fragment_all_impacts"
         tools:layout="@layout/fragment_all_impacts" >
-        <action
-            android:id="@+id/action_allImpactsFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
-        <action
-            android:id="@+id/action_allImpactsFragment_to_impactFragment"
-            app:destination="@id/impactFragment" />
+
     </fragment>
     <fragment
         android:id="@+id/notificationFragment"
         android:name="com.example.projectworkaprilkumak.actionbar.NotificationFragment"
         android:label="fragment_notification"
         tools:layout="@layout/fragment_notification" >
-        <action
-            android:id="@+id/action_notificationFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
+
     </fragment>
     <fragment
         android:id="@+id/createNewFundRaisingFragment"
         android:name="com.example.projectworkaprilkumak.myfundraising.CreateNewFundRaisingFragment"
         android:label="fragment_create_new_fund_raising"
         tools:layout="@layout/fragment_create_new_fund_raising" >
-        <action
-            android:id="@+id/action_createNewFundRaisingFragment_to_myFundraisingFragment"
-            app:destination="@id/myFundraisingFragment" />
-        <action
-            android:id="@+id/action_createNewFundRaisingFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
+
     </fragment>
     <fragment
         android:id="@+id/editMyFundraisingFragment"
         android:name="com.example.projectworkaprilkumak.myfundraising.EditMyFundraisingFragment"
         android:label="fragment_edit_my_fundraising"
         tools:layout="@layout/fragment_edit_my_fundraising" >
-        <action
-            android:id="@+id/action_editMyFundraisingFragment_to_myFundraisingFragment"
-            app:destination="@id/myFundraisingFragment" />
+
     </fragment>
     <fragment
         android:id="@+id/editProfileFragment"
@@ -409,9 +197,7 @@
         android:name="com.example.projectworkaprilkumak.myfundraising.SeeResultsFragment"
         android:label="fragment_see_results"
         tools:layout="@layout/fragment_see_results" >
-        <action
-            android:id="@+id/action_seeResultsFragment_to_myFundraisingFragment"
-            app:destination="@id/myFundraisingFragment" />
+
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"
@@ -423,12 +209,7 @@
         android:name="com.example.projectworkaprilkumak.profile.TopUpFragment"
         android:label="fragment_top_up"
         tools:layout="@layout/fragment_top_up" >
-        <action
-            android:id="@+id/action_topUpFragment_to_profileFragment"
-            app:destination="@id/profileFragment" />
-        <action
-            android:id="@+id/action_topUpFragment_to_walletCenterFragment"
-            app:destination="@id/walletCenterFragment" />
+
     </fragment>
     <fragment
         android:id="@+id/withDrawFragment"
@@ -440,20 +221,13 @@
         android:name="com.example.projectworkaprilkumak.profile.WalletCenterFragment"
         android:label="fragment_wallet_center"
         tools:layout="@layout/fragment_wallet_center" >
-        <action
-            android:id="@+id/action_walletCenterFragment_to_profileFragment"
-            app:destination="@id/profileFragment" />
-        <action
-            android:id="@+id/action_walletCenterFragment_to_topUpFragment"
-            app:destination="@id/topUpFragment" />
+
     </fragment>
     <fragment
         android:id="@+id/viewPagerFragment"
         android:name="com.example.projectworkaprilkumak.onboarding.ViewPagerFragment"
         android:label="fragment_view_pager"
         tools:layout="@layout/fragment_view_pager" >
-        <action
-            android:id="@+id/action_viewPagerFragment_to_welcomeFragment"
-            app:destination="@id/welcomeFragment" />
+
     </fragment>
 </navigation>

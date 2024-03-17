@@ -48,7 +48,7 @@ class EndingFragment : Fragment() {
         activity.supportActionBar?.setDisplayHomeAsUpEnabled(true)
         activity.supportActionBar?.setDisplayShowTitleEnabled(true)
 
-        toolbar.setNavigationOnClickListener { findNavController().navigate(R.id.action_endingFragment_to_homeFragment) }
+        toolbar.setNavigationOnClickListener { findNavController().navigate(R.id.homeFragment) }
 
         bookmarkedList = mutableListOf()
         val list = loadUF()
@@ -64,7 +64,7 @@ class EndingFragment : Fragment() {
                 urgents_adapter = UrgentFAdapter(filter, object : UrgentFAdapter.DonateInterface{
                     override fun onPress(donationData: UrgentFdata) {
                         val bundle = bundleOf("donationData" to donationData)
-                        findNavController().navigate(R.id.action_endingFragment_to_donationDetailsFragment, bundle)
+                        findNavController().navigate(R.id.donationDetailsFragment, bundle)
                     }
 
                 }, object : UrgentFAdapter.BookMarkInterface{
@@ -81,7 +81,7 @@ class EndingFragment : Fragment() {
         urgents_adapter = UrgentFAdapter(list, object : UrgentFAdapter.DonateInterface{
             override fun onPress(donationData: UrgentFdata) {
                 val bundle = bundleOf("donationData" to donationData)
-                findNavController().navigate(R.id.action_endingFragment_to_donationDetailsFragment, bundle)
+                findNavController().navigate(R.id.donationDetailsFragment, bundle)
             }
 
         }, object : UrgentFAdapter.BookMarkInterface{
@@ -113,7 +113,7 @@ class EndingFragment : Fragment() {
                 urgents_adapter = UrgentFAdapter(categoryList, object : UrgentFAdapter.DonateInterface{
                     override fun onPress(donationData: UrgentFdata) {
                         val bundle = bundleOf("donationData" to donationData)
-                        findNavController().navigate(R.id.action_endingFragment_to_donationDetailsFragment, bundle)
+                        findNavController().navigate(R.id.donationDetailsFragment, bundle)
                     }
 
                 }, object : UrgentFAdapter.BookMarkInterface{

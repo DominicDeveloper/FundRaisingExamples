@@ -38,7 +38,7 @@ class SearchFragment : Fragment() {
         activity.supportActionBar?.setDisplayHomeAsUpEnabled(true)
         activity.supportActionBar?.setDisplayShowTitleEnabled(true)
 
-        toolbar.setNavigationOnClickListener { findNavController().navigate(R.id.action_searchFragment_to_homeFragment) }
+        toolbar.setNavigationOnClickListener { findNavController().navigate(R.id.homeFragment) }
 
         val list = loadSF()
 
@@ -54,13 +54,13 @@ class SearchFragment : Fragment() {
                 searchCardsAdapter = UrgentFAdapter(filter, object : UrgentFAdapter.DonateInterface{
                     override fun onPress(donationData: UrgentFdata) {
                         val bundle = bundleOf("donationData" to donationData)
-                        findNavController().navigate(R.id.action_searchFragment_to_donationDetailsFragment, bundle)
+                        findNavController().navigate(R.id.donationDetailsFragment, bundle)
                     }
 
                 }, object : UrgentFAdapter.BookMarkInterface{
                     override fun b_click(donationData: UrgentFdata) {
                         val bundle = bundleOf("bookmark" to donationData)
-                        findNavController().navigate(R.id.action_searchFragment_to_bookmarkFragment, bundle)
+                        findNavController().navigate(R.id.bookmarkFragment, bundle)
                     }
 
                 })
@@ -71,13 +71,13 @@ class SearchFragment : Fragment() {
         searchCardsAdapter = UrgentFAdapter(list, object : UrgentFAdapter.DonateInterface{
             override fun onPress(donationData: UrgentFdata) {
                 val bundle = bundleOf("donationData" to donationData)
-                findNavController().navigate(R.id.action_searchFragment_to_donationDetailsFragment, bundle)
+                findNavController().navigate(R.id.donationDetailsFragment, bundle)
             }
 
         }, object : UrgentFAdapter.BookMarkInterface{
             override fun b_click(donationData: UrgentFdata) {
                 val bundle = bundleOf("bookmark" to donationData)
-                findNavController().navigate(R.id.action_searchFragment_to_bookmarkFragment, bundle)
+                findNavController().navigate(R.id.bookmarkFragment, bundle)
             }
 
         })
@@ -96,13 +96,13 @@ class SearchFragment : Fragment() {
                 searchCardsAdapter = UrgentFAdapter(categoryList, object : UrgentFAdapter.DonateInterface{
                     override fun onPress(donationData: UrgentFdata) {
                         val bundle = bundleOf("donationData" to donationData)
-                        findNavController().navigate(R.id.action_searchFragment_to_donationDetailsFragment, bundle)
+                        findNavController().navigate(R.id.donationDetailsFragment, bundle)
                     }
 
                 }, object : UrgentFAdapter.BookMarkInterface{
                     override fun b_click(donationData: UrgentFdata) {
                         val bundle = bundleOf("bookmark" to donationData)
-                        findNavController().navigate(R.id.action_searchFragment_to_bookmarkFragment, bundle)
+                        findNavController().navigate(R.id.bookmarkFragment, bundle)
                     }
 
                 })

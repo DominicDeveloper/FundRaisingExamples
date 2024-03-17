@@ -37,12 +37,14 @@
             <com.google.android.material.imageview.ShapeableImageView
                 android:layout_width="100dp"
                 android:layout_height="100dp"
+                android:id="@+id/profileImage"
                 android:layout_gravity="center"
                 android:scaleType="centerCrop"
                 android:src="@drawable/portrait"
                 app:shapeAppearanceOverlay="@style/portrait" />
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnSetImage"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_marginStart="210dp"

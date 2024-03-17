@@ -9,29 +9,37 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.navigation.fragment.findNavController
 import com.example.projectworkaprilkumak.R
+import com.example.projectworkaprilkumak.database.MyBase
 import com.example.projectworkaprilkumak.databinding.FragmentFillProfileBinding
 import com.example.projectworkaprilkumak.databinding.FragmentSignUpBinding
+import com.example.projectworkaprilkumak.datas.ImageUser
+import com.example.projectworkaprilkumak.datas.MyProfie
 import com.example.projectworkaprilkumak.datas.Profile
 import com.example.projectworkaprilkumak.datas.User
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import java.io.File
+import java.io.FileInputStream
+import java.io.FileOutputStream
 
 
 class FillProfile : Fragment() {
-
+    lateinit var myBase: MyBase
+    lateinit var binding: FragmentFillProfileBinding
+    lateinit var list:ArrayList<MyProfie>
+    var readMyBytes:ByteArray? =null
+    var absolutePath = ""
     private lateinit var gender:String
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-
-        val binding = FragmentFillProfileBinding.inflate(inflater, container, false)
-
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        myBase = MyBase(requireContext())
+        list = ArrayList()
+        binding = FragmentFillProfileBinding.inflate(inflater, container, false)
         var toolbar: Toolbar = binding.toolbar
         val activity : AppCompatActivity = activity as AppCompatActivity
         activity.setSupportActionBar(toolbar)
@@ -40,11 +48,6 @@ class FillProfile : Fragment() {
         activity.supportActionBar?.setDisplayShowTitleEnabled(true)
 
 
-        var userList = mutableListOf<Profile>()
-        var sharedPreferences = this.requireActivity().getSharedPreferences("register", Context.MODE_PRIVATE)
-        var edit = sharedPreferences.edit()
-        var gson = Gson()
-        var type = object : TypeToken<List<Profile>>() {}.type
 
         var list = listOf("male", "female")
         val adapter = ArrayAdapter(requireContext(), R.layout.list_item_dropdown, list)
@@ -54,34 +57,47 @@ class FillProfile : Fragment() {
         }
 
         binding.continueBtn.setOnClickListener {
-            var profilers = sharedPreferences.getString("profiles", "")
-            if (profilers == ""){
-                userList.add(Profile(binding.profileName.text.toString(),
-                    binding.profileEmail.text.toString(),
-                    binding.profilePhoneNumber.text.toString(),
-                    gender,
-                    binding.profileCity.text.toString()))
-                val str = gson.toJson(userList)
-                edit.putString("profiles", str).commit()
-            } else{
-                userList = gson.fromJson(profilers, type)
-
-                userList.add(Profile(binding.profileName.text.toString(), binding.profileEmail.text.toString(),
-                    binding.profilePhoneNumber.text.toString(), gender, binding.profileCity.text.toString()))
-                    Toast.makeText(requireContext(), "Successfully registered", Toast.LENGTH_SHORT).show()
-                    val str = gson.toJson(userList)
-                    edit.putString("profiles", str).commit()
-                    findNavController().navigate(R.id.action_fillProfile_to_selectInterestFragment)
+            if (binding.profileName.text!!.isNotEmpty() && binding.profileEmail.text!!.isNotEmpty() && binding.profilePhoneNumber.text!!.isNotEmpty() && binding.profileCity.text!!.isNotEmpty() && gender.isNotEmpty() && absolutePath.isNotEmpty() && readMyBytes!!.isNotEmpty()){
+                myBase.addProile(MyProfie(getUserId(),binding.profileName.text.toString(),binding.profileEmail.text.toString(),binding.profilePhoneNumber.text.toString(),gender,binding.profileCity.text.toString(),absolutePath,readMyBytes))
+                findNavController().navigate(R.id.selectInterestFragment)
+            }else{
+                Toast.makeText(requireContext(), "Not be empty!", Toast.LENGTH_SHORT).show()
             }
         }
 
-
         toolbar.setNavigationOnClickListener { findNavController().navigateUp() }
 
-
-
+        binding.btnSetImage.setOnClickListener {
+            getNewImage()
+        }
 
         return binding.root
     }
+    fun getUserId():Int{
+        return myBase.getUser().last().id!!
+    }
+    private val getImageContent =
+        registerForActivityResult(ActivityResultContracts.GetContent()){
+            it ?: return@registerForActivityResult
+            binding.profileImage.setImageURI(it)
+            val inputStream = requireContext().contentResolver?.openInputStream(it)
+            val file = File(requireContext().filesDir,"image.jpg")
+            val fileOutputStream = FileOutputStream(file)
+            inputStream?.copyTo(fileOutputStream)
+            inputStream?.close()
+            fileOutputStream?.close()
+            val absoulut = file.absolutePath
+
+            val fileInputStream = FileInputStream(file)
+            val readBytes = fileInputStream.readBytes()
+            absolutePath = absoulut
+            readMyBytes = readBytes
+        }
+
+    private fun getNewImage() {
+        getImageContent.launch("image/*")
+    }
+
+
 
 }

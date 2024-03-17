@@ -35,7 +35,7 @@ class DonateFragment : Fragment() {
         activity.supportActionBar?.setDisplayHomeAsUpEnabled(true)
         activity.supportActionBar?.setDisplayShowTitleEnabled(true)
 
-        toolbar.setNavigationOnClickListener { findNavController().navigate(R.id.action_donateFragment_to_donationDetailsFragment) }
+        toolbar.setNavigationOnClickListener { findNavController().navigate(R.id.donationDetailsFragment) }
 
         binding.amountRV.layoutManager = GridLayoutManager(context, 2)
 
@@ -55,7 +55,7 @@ class DonateFragment : Fragment() {
 
         })
 
-        binding.continueBtn.setOnClickListener { findNavController().navigate(R.id.action_donateFragment_to_enterPinFragment) }
+        binding.continueBtn.setOnClickListener { findNavController().navigate(R.id.enterPinFragment) }
 
 
 

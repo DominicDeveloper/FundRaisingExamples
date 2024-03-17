@@ -59,7 +59,7 @@ class BookmarkFragment : Fragment() {
         bookmarkAdapter = BookmarkAdapter(bookmarkList, object : BookmarkAdapter.BooDonDetInterface{
             override fun onPress(booDonDet: UrgentFdata) {
                 val bundle = bundleOf("donationData" to booDonDet)
-                findNavController().navigate(R.id.action_urgentFragment_to_donationDetailsFragment, bundle)
+                findNavController().navigate(R.id.donationDetailsFragment, bundle)
             }
         })
 
@@ -77,7 +77,7 @@ class BookmarkFragment : Fragment() {
                 bookmarkAdapter = BookmarkAdapter(categoryList, object : BookmarkAdapter.BooDonDetInterface{
                     override fun onPress(booDonDet: UrgentFdata) {
                         val bundle = bundleOf("donationData" to booDonDet)
-                        findNavController().navigate(R.id.action_urgentFragment_to_donationDetailsFragment, bundle)
+                        findNavController().navigate(R.id.donationDetailsFragment, bundle)
                     }
 
                 })

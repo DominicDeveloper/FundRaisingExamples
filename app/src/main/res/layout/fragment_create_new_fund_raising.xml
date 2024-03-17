@@ -128,19 +128,21 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Category"
+            android:hint="Choose category"
+            android:id="@+id/textInputDropDown"
             android:textColorHint="#CACACA"
             app:boxStrokeColor="@color/mtrl_textinput_default_box_stroke_color"
-            app:endIconMode="custom"
+            app:endIconMode="dropdown_menu"
             app:shapeAppearance="@style/editStyle">
 
-            <AutoCompleteTextView
-                android:id="@+id/dropdown_categories"
+            <androidx.appcompat.widget.AppCompatAutoCompleteTextView
+                android:id="@+id/categoryView"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:inputType="none"
-                android:text="Choose Category"
-                />
+                android:layout_height="wrap_content"
+                android:clickable="false"
+                android:editable="false"
+                android:inputType="textAutoComplete"
+                tools:ignore="KeyboardInaccessibleWidget" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -209,7 +211,7 @@
             app:shapeAppearance="@style/editStyle">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/profileGender"
+                android:id="@+id/expireDate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="date"/>
@@ -244,7 +246,7 @@
             app:shapeAppearance="@style/editStyle">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/profileCity"
+                android:id="@+id/usagePlan"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textLongMessage"/>

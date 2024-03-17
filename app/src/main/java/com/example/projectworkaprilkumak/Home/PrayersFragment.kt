@@ -38,7 +38,7 @@ class PrayersFragment : Fragment() {
         activity.supportActionBar?.setDisplayHomeAsUpEnabled(true)
         activity.supportActionBar?.setDisplayShowTitleEnabled(true)
 
-        toolbar.setNavigationOnClickListener { findNavController().navigate(R.id.action_prayersFragment_to_homeFragment) }
+        toolbar.setNavigationOnClickListener { findNavController().navigate(R.id.homeFragment) }
 
 
         val prayersList = loadPrayers()

@@ -59,12 +59,12 @@ class ViewPagerFragment : Fragment() {
         })
 
         binding.skip.setOnClickListener {
-            findNavController().navigate(R.id.action_viewPagerFragment_to_welcomeFragment)
+            findNavController().navigate(R.id.welcomeFragment)
         }
 
         binding.next.setOnClickListener {
             if (binding.next.text.toString()=="Get Started"){
-                findNavController().navigate(R.id.action_viewPagerFragment_to_welcomeFragment)
+                findNavController().navigate(R.id.welcomeFragment)
             } else{
                 val current = binding.viewpager.currentItem + 1
                 binding.viewpager.currentItem = current

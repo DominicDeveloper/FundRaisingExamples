@@ -14,16 +14,20 @@ import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import androidx.navigation.fragment.findNavController
 import com.example.projectworkaprilkumak.R
+import com.example.projectworkaprilkumak.database.MyBase
 import com.example.projectworkaprilkumak.databinding.FragmentSplashBinding
+import com.example.projectworkaprilkumak.datas.MyUser
 import com.example.projectworkaprilkumak.sharedPreferences.MySharedPreferences
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
 class SplashFragment : Fragment() {
+    lateinit var myBase: MyBase
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        myBase = MyBase(requireContext())
 //
 //        val file = MySharedPreferences.getInstance(requireActivity())
 //        val status:Boolean = file.getStatus()
@@ -32,8 +36,7 @@ class SplashFragment : Fragment() {
 
 
         val binding = FragmentSplashBinding.inflate(inflater, container, false)
-        var animation =
-            AnimationUtils.loadAnimation(requireContext(), R.anim.logo_anim)
+        var animation = AnimationUtils.loadAnimation(requireContext(), R.anim.logo_anim)
         binding.logo.startAnimation(animation)
 
         animation = AnimationUtils.loadAnimation(requireContext(), R.anim.rotate_anim)
@@ -50,17 +53,29 @@ class SplashFragment : Fragment() {
     }
 
     fun check(){
-        val getSharedPreferences = this.requireActivity().getSharedPreferences("context", Context.MODE_PRIVATE)
-        val state = getSharedPreferences.getBoolean("state", false)
-        if (!state){
+        var myUser = MyUser()
+        myBase.getUser().forEach {
+            if (it.isSignedIn == "1"){
+                myUser.id = it.id
+                myUser.email = it.email
+                myUser.password = it.password
+                myUser.isSignedIn = it.isSignedIn
+            }
+        }
+        if (myUser.isSignedIn == "1"){
             Handler(Looper.getMainLooper()).postDelayed({
-                findNavController().navigate(R.id.action_splashFragment_to_viewPagerFragment)
+                findNavController().popBackStack()
+                findNavController().navigate(R.id.homeFragment)
             }, 3000)
-        } else{
+        }else{
             Handler(Looper.getMainLooper()).postDelayed({
-                findNavController().navigate(R.id.action_splashFragment_to_signInFragment)
+                findNavController().popBackStack()
+                findNavController().navigate(R.id.signInFragment)
             }, 3000)
         }
+    }
+    fun isExist(){
+
     }
 
 }

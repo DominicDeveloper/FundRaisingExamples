@@ -3,19 +3,14 @@ package com.example.projectworkaprilkumak.Home
 import android.os.Bundle
 import android.util.Log
 import android.view.*
-import android.widget.LinearLayout
 import android.widget.Toast
-import androidx.fragment.app.Fragment
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.os.bundleOf
-import androidx.navigation.NavController
-import androidx.navigation.findNavController
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
-import androidx.recyclerview.widget.RecyclerView
 import com.example.projectworkaprilkumak.R
 import com.example.projectworkaprilkumak.adapters.ImpactAdapter
 import com.example.projectworkaprilkumak.adapters.MainCategoryAdapter
@@ -26,7 +21,6 @@ import com.example.projectworkaprilkumak.datas.ImpactData
 import com.example.projectworkaprilkumak.datas.MainCategory
 import com.example.projectworkaprilkumak.datas.Prayers
 import com.example.projectworkaprilkumak.datas.UrgentFdata
-import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class HomeFragment : Fragment() {
 
@@ -75,7 +69,7 @@ class HomeFragment : Fragment() {
         urgents_adapter = UrgentFAdapter(list, object : UrgentFAdapter.DonateInterface{
             override fun onPress(donationData: UrgentFdata) {
                 val bundle = bundleOf("donationData" to donationData)
-                findNavController().navigate(R.id.action_homeFragment_to_donationDetailsFragment, bundle)
+                findNavController().navigate(R.id.donationDetailsFragment, bundle)
             }
 
         }, object : UrgentFAdapter.BookMarkInterface{
@@ -100,7 +94,7 @@ class HomeFragment : Fragment() {
                 urgents_adapter = UrgentFAdapter(categoryList, object : UrgentFAdapter.DonateInterface{
                     override fun onPress(donationData: UrgentFdata) {
                         val bundle = bundleOf("donationData" to donationData)
-                        findNavController().navigate(R.id.action_homeFragment_to_donationDetailsFragment, bundle)
+                        findNavController().navigate(R.id.donationDetailsFragment, bundle)
                     }
 
                 }, object : UrgentFAdapter.BookMarkInterface{
@@ -133,7 +127,7 @@ class HomeFragment : Fragment() {
         endings_adapter = UrgentFAdapter(endings, object : UrgentFAdapter.DonateInterface{
             override fun onPress(donationData: UrgentFdata) {
                 val bundle = bundleOf("donationData" to donationData)
-                findNavController().navigate(R.id.action_homeFragment_to_donationDetailsFragment, bundle)
+                findNavController().navigate(R.id.donationDetailsFragment, bundle)
             }
 
         }, object : UrgentFAdapter.BookMarkInterface{
@@ -150,7 +144,7 @@ class HomeFragment : Fragment() {
         impactsAdapter = ImpactAdapter(impactList, object : ImpactAdapter.ImpactInterface{
             override fun onPress(impactData: ImpactData) {
                 val bundle = bundleOf("impact" to impactData)
-                findNavController().navigate(R.id.action_homeFragment_to_impactFragment, bundle)
+                findNavController().navigate(R.id.impactFragment, bundle)
             }
         })
 
@@ -159,10 +153,10 @@ class HomeFragment : Fragment() {
         binding.impactRV.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
 
 
-        binding.seeAll.setOnClickListener { findNavController().navigate(R.id.action_homeFragment_to_urgentFragment) }
-        binding.seeAll2.setOnClickListener { findNavController().navigate(R.id.action_homeFragment_to_endingFragment) }
-        binding.seeAll3.setOnClickListener { findNavController().navigate(R.id.action_homeFragment_to_allImpactsFragment) }
-        binding.seeAll4.setOnClickListener { findNavController().navigate(R.id.action_homeFragment_to_prayersFragment) }
+        binding.seeAll.setOnClickListener { findNavController().navigate(R.id.urgentFragment) }
+        binding.seeAll2.setOnClickListener { findNavController().navigate(R.id.endingFragment) }
+        binding.seeAll3.setOnClickListener { findNavController().navigate(R.id.allImpactsFragment) }
+        binding.seeAll4.setOnClickListener { findNavController().navigate(R.id.prayersFragment) }
 
 
         val prayersList = loadPrayers()
@@ -277,13 +271,13 @@ private fun loadUF() : MutableList<UrgentFdata>{
                 Log.d("MyDataB", "${bookmarkedList}")
                 val bundle = Bundle()
                 bundle.putSerializable("bookmarkedList", bookmarkedList as ArrayList)
-                findNavController().navigate(R.id.action_homeFragment_to_bookmarkFragment, bundle)
+                findNavController().navigate(R.id.bookmarkFragment, bundle)
             }
             R.id.notification -> {
                 Toast.makeText(requireContext(), "This is notification", Toast.LENGTH_SHORT)
             }
             R.id.search ->{
-                findNavController().navigate(R.id.action_homeFragment_to_searchFragment)
+                findNavController().navigate(R.id.searchFragment)
             }
         }
 

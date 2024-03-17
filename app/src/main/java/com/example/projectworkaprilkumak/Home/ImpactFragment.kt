@@ -29,7 +29,7 @@ class ImpactFragment : Fragment() {
         binding.impactI.setImageResource(impactCard.impactI)
         binding.impactT.text = impactCard.impactT
 
-        binding.back.setOnClickListener { findNavController().navigate(R.id.action_impactFragment_to_homeFragment) }
+        binding.back.setOnClickListener { findNavController().navigate(R.id.homeFragment) }
 
 
 

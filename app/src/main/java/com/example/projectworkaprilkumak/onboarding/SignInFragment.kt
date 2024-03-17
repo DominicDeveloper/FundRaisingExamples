@@ -10,26 +10,51 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.example.projectworkaprilkumak.R
+import com.example.projectworkaprilkumak.database.MyBase
 import com.example.projectworkaprilkumak.databinding.FragmentSignInBinding
+import com.example.projectworkaprilkumak.datas.MyUser
 import com.example.projectworkaprilkumak.datas.User
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
 
 class SignInFragment : Fragment() {
-
+    var hasGot = false
+    lateinit var myBase: MyBase
+    lateinit var userList:ArrayList<MyUser>
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        myBase = MyBase(requireContext())
+        userList = ArrayList()
+        userList.addAll(myBase.getUser())
         val binding = FragmentSignInBinding.inflate(inflater, container, false)
-        var sharedPreferences = this.requireActivity().getSharedPreferences("reg", Context.MODE_PRIVATE)
-        var gson = Gson()
-        var userList = mutableListOf<User>()
-        var type = object : TypeToken<List<User>>() {}.type
 
         binding.signinBtn.setOnClickListener {
-            var users = sharedPreferences.getString("users", "")
+                userList.forEach {
+                    if (binding.signinEmail.text.toString() == it.email && binding.signinPassword.text.toString() == it.password){
+                        hasGot = true
+                        myBase.editUser(MyUser(it.id,it.email,it.password,"1"))
+                    }else{
+                        hasGot = false
+                    }
+                }
+                if (hasGot){
+                    findNavController().navigate(R.id.homeFragment)
+                }else Toast.makeText(requireContext(), "Email or Password isn't correct!", Toast.LENGTH_SHORT).show()
+            
+        }
+
+        binding.signupTv.setOnClickListener {findNavController().navigate(R.id.signUpFragment)}
+
+        return binding.root
+    }
+}
+
+/*
+
+        var users = sharedPreferences.getString("users", "")
             var pos = false
 
             if(users == ""){
@@ -45,14 +70,7 @@ class SignInFragment : Fragment() {
                     }
                 }
 
-                if(pos==true) findNavController().navigate(R.id.action_signInFragment_to_homeFragment)
+                if(pos==true) findNavController().navigate(R.id.homeFragment)
                 else Toast.makeText(requireContext(), "You have not registered yet!", Toast.LENGTH_SHORT).show()
             }
-        }
-
-        binding.signupTv.setOnClickListener {findNavController().navigate(R.id.action_signInFragment_to_signUpFragment)}
-
-        return binding.root
-    }
-
-}
+         */

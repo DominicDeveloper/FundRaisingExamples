@@ -48,7 +48,7 @@ class CreatePinFragment : Fragment(), View.OnClickListener {
 
 
 
-        toolbar.setNavigationOnClickListener { findNavController().navigate(R.id.action_createPinFragment_to_selectInterestFragment) }
+        toolbar.setNavigationOnClickListener { findNavController().navigate(R.id.selectInterestFragment) }
 
         val gson = Gson()
 
@@ -70,7 +70,7 @@ class CreatePinFragment : Fragment(), View.OnClickListener {
             dialog.setCancelable(false)
             dialog.setContentView(R.layout.custom_dialog_window)
             val next = dialog.findViewById(R.id.continue_btn) as Button
-            next.setOnClickListener { findNavController().navigate(R.id.action_createPinFragment_to_homeFragment)
+            next.setOnClickListener { findNavController().navigate(R.id.homeFragment)
             dialog.dismiss()}
             dialog.show()
         }

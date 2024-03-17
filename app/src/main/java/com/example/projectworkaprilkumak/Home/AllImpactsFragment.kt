@@ -36,14 +36,14 @@ private lateinit var binding:FragmentAllImpactsBinding
         activity.supportActionBar?.setDisplayHomeAsUpEnabled(true)
         activity.supportActionBar?.setDisplayShowTitleEnabled(true)
 
-        toolbar.setNavigationOnClickListener { findNavController().navigate(R.id.action_allImpactsFragment_to_homeFragment) }
+        toolbar.setNavigationOnClickListener { findNavController().navigate(R.id.homeFragment) }
 
 
         val impactList = loadImpact()
         impactsAdapter = ImpactAdapter(impactList, object : ImpactAdapter.ImpactInterface{
             override fun onPress(impactData: ImpactData) {
                 val bundle = bundleOf("impact" to impactData)
-                findNavController().navigate(R.id.action_allImpactsFragment_to_impactFragment, bundle)
+                findNavController().navigate(R.id.impactFragment, bundle)
             }
 
 

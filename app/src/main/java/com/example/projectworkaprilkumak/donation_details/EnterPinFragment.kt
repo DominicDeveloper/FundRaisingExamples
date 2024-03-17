@@ -40,7 +40,7 @@ class EnterPinFragment : Fragment() , View.OnClickListener{
         activity.supportActionBar?.setDisplayHomeAsUpEnabled(true)
         activity.supportActionBar?.setDisplayShowTitleEnabled(true)
 
-        toolbar.setNavigationOnClickListener { findNavController().navigate(R.id.action_enterPinFragment_to_donateFragment) }
+        toolbar.setNavigationOnClickListener { findNavController().navigate(R.id.donateFragment) }
 
 
         val type = object : TypeToken<List<String>>() {}.type
@@ -60,7 +60,7 @@ class EnterPinFragment : Fragment() , View.OnClickListener{
             dialog.setCancelable(false)
             dialog.setContentView(R.layout.custom_dialog_window_making_donation)
             val next = dialog.findViewById(R.id.continue_btn) as Button
-            next.setOnClickListener { findNavController().navigate(R.id.action_enterPinFragment_to_homeFragment)
+            next.setOnClickListener { findNavController().navigate(R.id.homeFragment)
                 dialog.dismiss()}
             dialog.show()
         }

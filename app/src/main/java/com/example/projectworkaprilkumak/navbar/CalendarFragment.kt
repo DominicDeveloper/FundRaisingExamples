@@ -9,10 +9,8 @@ import com.example.projectworkaprilkumak.R
 
 
 class CalendarFragment : Fragment() {
-
     // baribir o'zgarmadi
     //  yana o'sha-o'sha
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

@@ -32,6 +32,7 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_gravity="center"
+            android:id="@+id/profileImg"
             android:scaleType="centerCrop"
             android:src="@drawable/portrait"
             app:shapeAppearanceOverlay="@style/portrait" />
@@ -39,6 +40,7 @@
         <com.google.android.material.button.MaterialButton
             android:layout_width="40dp"
             android:layout_height="40dp"
+            android:id="@+id/resetProfileImg"
             android:layout_marginStart="210dp"
             android:layout_marginTop="-25dp"
             android:backgroundTint="@color/theme_color"

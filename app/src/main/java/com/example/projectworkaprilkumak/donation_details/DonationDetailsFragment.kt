@@ -34,10 +34,10 @@ class DonationDetailsFragment : Fragment() {
 
 
         binding.back.setOnClickListener {
-            findNavController().navigate(R.id.action_donationDetailsFragment_to_homeFragment)
+            findNavController().navigate(R.id.homeFragment)
         }
         binding.donateBtn.setOnClickListener {
-            findNavController().navigate(R.id.action_donationDetailsFragment_to_donateFragment)
+            findNavController().navigate(R.id.homeFragment)
         }
 
         return binding.root

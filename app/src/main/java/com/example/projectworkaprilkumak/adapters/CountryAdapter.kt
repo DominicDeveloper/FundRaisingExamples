@@ -10,9 +10,8 @@ import com.example.projectworkaprilkumak.databinding.FragmentSelectCountryBindin
 import com.example.projectworkaprilkumak.databinding.ItemCountryBinding
 import com.example.projectworkaprilkumak.datas.Country
 
-class CountryAdapter(context: Context, var countries: MutableList<Country>):
+class CountryAdapter(context: Context, var countries: MutableList<Country>,var onClick: ClickMe):
     ArrayAdapter<Country>(context, R.layout.item_country, countries) {
-
 
     override fun getCount(): Int {
         return countries.size
@@ -39,10 +38,16 @@ class CountryAdapter(context: Context, var countries: MutableList<Country>):
                 binding.ch1.setBackgroundResource(R.drawable.checkbox_oval)
                 state=true
             }
+            onClick.onClick(country)
         }
+
+
 
 
         return binding.root
     }
 
+    interface ClickMe{
+        fun onClick(country: Country)
+    }
 }

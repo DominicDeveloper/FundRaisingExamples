@@ -12,9 +12,13 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.projectworkaprilkumak.R
 import com.example.projectworkaprilkumak.adapters.SelectInterestAdapter
+import com.example.projectworkaprilkumak.database.MyBase
 import com.example.projectworkaprilkumak.databinding.FragmentSelectInterestBinding
+import com.example.projectworkaprilkumak.datas.MySelectedInterest
 
 import com.example.projectworkaprilkumak.datas.SelectInterest
+import com.example.projectworkaprilkumak.modules.MyData
+import com.google.gson.Gson
 
 
 private const val ARG_PARAM1 = "param1"
@@ -24,7 +28,9 @@ private const val ARG_PARAM2 = "param2"
 class SelectInterestFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
-
+    var interestS = ""
+    lateinit var list:ArrayList<SelectInterest>
+    lateinit var myBase: MyBase
     private lateinit var interestList: MutableList<SelectInterest>
     private lateinit var interestAdapter: SelectInterestAdapter
 
@@ -48,8 +54,9 @@ class SelectInterestFragment : Fragment() {
         activity.supportActionBar?.setDisplayHomeAsUpEnabled(true)
         activity.supportActionBar?.setDisplayShowTitleEnabled(true)
 
-
-        toolbar.setNavigationOnClickListener { findNavController().navigate(R.id.action_selectInterestFragment_to_fillProfile) }
+        myBase = MyBase(requireContext())
+        list = ArrayList()
+        toolbar.setNavigationOnClickListener { findNavController().navigate(R.id.fillProfile) }
 
 
         interestList = mutableListOf()
@@ -69,9 +76,9 @@ class SelectInterestFragment : Fragment() {
 
 
         interestAdapter = SelectInterestAdapter(interestList, object : SelectInterestAdapter.InterestInterface{
-
             override fun onInterestClick(interest: SelectInterest, position: Int) {
-                val bundle = bundleOf("interest" to interest)
+                //val bundle = bundleOf("interest" to interest)
+                list.add(interest)
             }
 
         })
@@ -80,8 +87,17 @@ class SelectInterestFragment : Fragment() {
         binding.interestRV.adapter = interestAdapter
 
 
+        binding.continueBtn.setOnClickListener {
+            if (list.isNotEmpty()){
+                val json = Gson()
+                val stringList = json.toJson(list)
+                myBase.addInterest(MySelectedInterest(stringList))
+                findNavController().navigate(R.id.createPinFragment)
+            }else{
+                findNavController().navigate(R.id.createPinFragment)
+            }
 
-        binding.continueBtn.setOnClickListener { findNavController().navigate(R.id.action_selectInterestFragment_to_createPinFragment) }
+        }
 
 
         return binding.root

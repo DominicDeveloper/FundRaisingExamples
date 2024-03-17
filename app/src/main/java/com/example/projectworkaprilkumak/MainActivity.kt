@@ -43,11 +43,11 @@ class MainActivity : AppCompatActivity() {
 
         binding.navBar.setOnItemSelectedListener {
             when(it.itemId){
-                R.id.calendarFragment -> navController.navigate(R.id.action_homeFragment_to_calendarFragment)  //1
-                R.id.myFundraisingFragment ->
-                    navController.navigate(R.id.action_homeFragment_to_myFundraisingFragment) //2
-                R.id.chatFragment ->navController.navigate(R.id.action_homeFragment_to_chatFragment)//3
-                R.id.profileFragment -> navController.navigate(R.id.action_homeFragment_to_profileFragment) //4
+                R.id.homeFragment -> navController.navigate(R.id.homeFragment)
+                R.id.calendarFragment -> navController.navigate(R.id.calendarFragment)  //1
+                R.id.myFundraisingFragment -> navController.navigate(R.id.myFundraisingFragment) //2
+                R.id.chatFragment ->navController.navigate(R.id.chatFragment)//3
+                R.id.profileFragment -> navController.navigate(R.id.profileFragment) //4
             }
             true
         }
