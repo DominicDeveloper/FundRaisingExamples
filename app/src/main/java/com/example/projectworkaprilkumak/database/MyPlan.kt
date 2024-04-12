@@ -5,6 +5,7 @@ import com.example.projectworkaprilkumak.datas.MyCountry
 import com.example.projectworkaprilkumak.datas.MyFundraisingData
 import com.example.projectworkaprilkumak.datas.MyProfie
 import com.example.projectworkaprilkumak.datas.MySelectedInterest
+import com.example.projectworkaprilkumak.datas.MySortData
 import com.example.projectworkaprilkumak.datas.MyUser
 import com.example.projectworkaprilkumak.datas.SelectInterest
 
@@ -32,4 +33,7 @@ interface MyPlan {
     fun addInterest(mySelectedInterest: MySelectedInterest)
     fun getAllInterest():List<MySelectedInterest>
     fun editInterest(mySelectedInterest: MySelectedInterest):Int
+    fun addSort(mySortData: MySortData)
+    fun getAllSort():ArrayList<MySortData>
+    fun editSort(mySortData: MySortData):Int
 }

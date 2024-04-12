@@ -9,6 +9,7 @@ import com.example.projectworkaprilkumak.datas.MyCountry
 import com.example.projectworkaprilkumak.datas.MyFundraisingData
 import com.example.projectworkaprilkumak.datas.MyProfie
 import com.example.projectworkaprilkumak.datas.MySelectedInterest
+import com.example.projectworkaprilkumak.datas.MySortData
 import com.example.projectworkaprilkumak.datas.MyUser
 import com.example.projectworkaprilkumak.datas.SelectInterest
 
@@ -21,12 +22,14 @@ class MyBase(var context: Context):SQLiteOpenHelper(context,"mybas.db",null,1),M
         val profileQuery = "create table profile(id integer primary key autoincrement not null,user_id text not null,name text not null,email text not null,phone text not null,gender text not null,city text not null,path text not null,image blob not null)"
         val countryQuery = "create table country(id integer primary key autoincrement not null,name text not null,flag integer not null,short text not null)"
         val interestQuery = "create table interest(id integer primary key autoincrement not null,interests text not null)"
+        val sortQuery = "create table sort(id integer primary key autoincrement not null,sorting text not null)"
         p0?.execSQL(query)
         p0?.execSQL(mainQuery)
         p0?.execSQL(userQuery)
         p0?.execSQL(profileQuery)
         p0?.execSQL(countryQuery)
         p0?.execSQL(interestQuery)
+        p0?.execSQL(sortQuery)
     }
     override fun onUpgrade(p0: SQLiteDatabase?, p1: Int, p2: Int) {
 
@@ -200,6 +203,38 @@ class MyBase(var context: Context):SQLiteOpenHelper(context,"mybas.db",null,1),M
         return edit.update("interest",contentValues,"id = ?", arrayOf(mySelectedInterest.id.toString()))
     }
 
+    override fun addSort(mySortData: MySortData) {
+        val adder = this.writableDatabase
+        val contentValues = ContentValues()
+        contentValues.put("sorting",mySortData.sortBy)
+        adder.insert("sort",null,contentValues)
+        adder.close()
+    }
+
+    override fun getAllSort(): ArrayList<MySortData> {
+        val list = ArrayList<MySortData>()
+        val query ="select * from sort"
+        val db = this.readableDatabase
+        val cursor = db.rawQuery(query,null)
+        if (cursor.moveToFirst()){
+            do {
+                val mySortData = MySortData()
+                mySortData.id = cursor.getInt(0)
+                mySortData.sortBy = cursor.getString(1)
+                list.add(mySortData)
+            }while (cursor.moveToNext())
+        }
+        return list
+    }
+
+    override fun editSort(mySortData: MySortData): Int {
+        val edit = this.writableDatabase
+        val contentValues = ContentValues()
+        contentValues.put("id",mySortData.id)
+        contentValues.put("sorting",mySortData.sortBy)
+        return edit.update("sort",contentValues,"id = ?", arrayOf(mySortData.id.toString()))
+    }
+
     override fun getAllImage(): List<ImageUser> {
         val list = ArrayList<ImageUser>()
         val query = "select * from image_table"
@@ -231,6 +266,7 @@ class MyBase(var context: Context):SQLiteOpenHelper(context,"mybas.db",null,1),M
         contentValues.put("donation",myFundraisingData.donationDocuments)
         contentValues.put("medical",myFundraisingData.medicalDocuments)
         contentValues.put("story",myFundraisingData.story)
+
         writer.insert("fund",null,contentValues)
         writer.close()
     }
@@ -254,6 +290,7 @@ class MyBase(var context: Context):SQLiteOpenHelper(context,"mybas.db",null,1),M
                 myFundraisingData.donationDocuments =cursor.getString(9)
                 myFundraisingData.medicalDocuments = cursor.getString(10)
                 myFundraisingData.story = cursor.getString(11)
+
                 list.add(myFundraisingData)
 
 
@@ -275,6 +312,7 @@ class MyBase(var context: Context):SQLiteOpenHelper(context,"mybas.db",null,1),M
         contentValues.put("donation",myFundraisingData.donationDocuments)
         contentValues.put("medical",myFundraisingData.medicalDocuments)
         contentValues.put("story",myFundraisingData.story)
+
         return edit.update("fund",contentValues,"id = ?",arrayOf(myFundraisingData.id.toString()))
     }
 

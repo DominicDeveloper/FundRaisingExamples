@@ -16,6 +16,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.projectworkaprilkumak.R
 import com.example.projectworkaprilkumak.database.MyBase
 import com.example.projectworkaprilkumak.databinding.FragmentSplashBinding
+import com.example.projectworkaprilkumak.datas.MySortData
 import com.example.projectworkaprilkumak.datas.MyUser
 import com.example.projectworkaprilkumak.sharedPreferences.MySharedPreferences
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -72,6 +73,10 @@ class SplashFragment : Fragment() {
                 findNavController().popBackStack()
                 findNavController().navigate(R.id.signInFragment)
             }, 3000)
+        }
+        if (myBase.getAllSort().isEmpty()){
+            myBase.addSort(MySortData("max"))
+            // dastur yangi ishga tushganida fundlarni sortlashni eng kop fun bolganidan boshlaydi
         }
     }
     fun isExist(){

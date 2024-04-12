@@ -1,32 +1,39 @@
 package com.example.projectworkaprilkumak.adapters
 
+import android.annotation.SuppressLint
 import android.content.Context
-import android.graphics.BitmapFactory
-import android.net.Uri
+import android.os.AsyncTask
+import android.os.Handler
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
+import android.widget.ImageView
+import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
-import com.example.projectworkaprilkumak.database.MyBase
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.example.projectworkaprilkumak.R
 import com.example.projectworkaprilkumak.databinding.ItemMyfundraisingBinding
-import com.example.projectworkaprilkumak.datas.ImageUser
+import com.example.projectworkaprilkumak.datas.FundsImage
 import com.example.projectworkaprilkumak.datas.MyFundraisingData
+import com.google.firebase.firestore.FirebaseFirestore
 
 class MyFundraisingAdapter(var context: Context,var myFundraisingList:MutableList<MyFundraisingData>) :
     RecyclerView.Adapter<MyFundraisingAdapter.MyFundraisingHolder>(){
-      var myBase = MyBase(context)
-      var imageList = ArrayList<ImageUser>()
+      var sliderList = ArrayList<FundsImage>()
+      lateinit var firebaseFireStore: FirebaseFirestore
     class MyFundraisingHolder(binding: ItemMyfundraisingBinding) : RecyclerView.ViewHolder(binding.root){
-        var mainCard = binding.mainCard
         var title = binding.urgentTitle
         var img = binding.urgentI
         var raised = binding.urgentRaisedFund
         var toRaise = binding.urgentToRaise
         var donN = binding.urgentDonatorQuantity
         var dayL = binding.UrgentLeftDays
-        var bookmark = binding.bIc
         var edit = binding.edit
-        var seeResults = binding.seeResults
+        var progress = binding.itemFundProgress
+
     }
 
 
@@ -37,19 +44,15 @@ class MyFundraisingAdapter(var context: Context,var myFundraisingList:MutableLis
 
     override fun onBindViewHolder(holder: MyFundraisingHolder, position: Int) {
         var myFundraising = myFundraisingList[position]
-        addAll()
-        imageList.forEach {
-            if (it.id == myFundraising.imgId){
-                holder.img.setImageURI(Uri.parse(it.absolutePath))
-                val bitmap = BitmapFactory.decodeByteArray(it.image,0,it.image!!.size)
-                holder.img.setImageBitmap(bitmap)
-            }
-        }
+        firebaseFireStore = FirebaseFirestore.getInstance()
+        MySecondAsyncTask(holder.progress,position,holder.img).execute()
+
         holder.title.text = myFundraising.title
         holder.toRaise.text = myFundraising.toRaise.toString()
         holder.raised.text = myFundraising.raised.toString()
         holder.donN.text = myFundraising.donN.toString()
         holder.dayL.text = myFundraising.daysLeft.toString()
+        anim(holder.itemView)
 
         holder.edit.setOnClickListener {
             Toast.makeText(context, "Working as well", Toast.LENGTH_SHORT).show()
@@ -60,18 +63,91 @@ class MyFundraisingAdapter(var context: Context,var myFundraisingList:MutableLis
     override fun getItemCount(): Int {
         return myFundraisingList.size
     }
-    fun addAll(){
-        imageList.addAll(myBase.getAllImage())
+    private fun getImageFromFirebase() {
+        firebaseFireStore.collection("images")
+            .get()
+            .addOnCompleteListener {
+                if (it.isSuccessful){
+                    val result = it.result
+                    result?.forEach { queryDocumentSnapshot ->
+                        val fundsImage = queryDocumentSnapshot.toObject(FundsImage::class.java)
+                        sliderList.add(fundsImage)
+                    }
+                }
+            }
+    }
+    fun anim(view: View){
+        val anim = AnimationUtils.loadAnimation(context, R.anim.anim_fund)
+        view.startAnimation(anim)
+    }
+    @SuppressLint("StaticFieldLeak")
+    inner class MySecondAsyncTask(var progress:ProgressBar,var position: Int,var imageView: ImageView):AsyncTask<Void?,Void?,Void?>(){
+        @Deprecated("Deprecated in Java",
+            ReplaceWith("super.onPreExecute()", "android.os.AsyncTask")
+        )
+        override fun onPreExecute() {
+            progress.visibility = View.VISIBLE
+            progress.setProgress(100,true)
+            super.onPreExecute()
+
+        }
+        @Deprecated("Deprecated in Java")
+        override fun doInBackground(vararg p0: Void?): Void? {
+            getImageFromFirebase()
+            return null
+        }
+
+        @Deprecated("Deprecated in Java",
+            ReplaceWith("super.onPostExecute(result)", "android.os.AsyncTask")
+        )
+        override fun onPostExecute(result: Void?) {
+            super.onPostExecute(result)
+            progress.setProgress(0,false)
+            progress.visibility = View.INVISIBLE
+            refresh(progress,position,imageView)
+        }
 
     }
-}
-
-/*
-val list = ArrayList<ImageUser>()
-            list.addAll(myBase.getAllImage())
-            if (list.isNotEmpty()){
-                binding.addPic.setImageURI(Uri.parse(list[0].absolutePath))
-                val bitmap = BitmapFactory.decodeByteArray(list[0].image,0,list[0].image!!.size)
-                binding.addPic.setImageBitmap(bitmap)
+    @SuppressLint("NotifyDataSetChanged")
+    private fun refresh(progress: ProgressBar,position: Int,imageView: ImageView){
+       val handler = Handler()
+        handler.postDelayed({
+            if (sliderList.isEmpty()){
+                progress.visibility = View.VISIBLE
+                progress.setProgress(100,true)
+                refresh(progress,position,imageView)
+            }else{
+                progress.setProgress(100,false)
+                progress.visibility = View.INVISIBLE
+                pickUpImages(position,imageView)
             }
- */
+        },500)
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    private fun pickUpImages(position: Int, imageView: ImageView) {
+        sliderList.forEach {
+            Glide.with(context.applicationContext)
+                .load(myFundraisingList[position].imageLink)
+                .fitCenter() // surat o`rtasini hisobga olgan holda
+                .diskCacheStrategy(DiskCacheStrategy.ALL) // keshga saqlash
+                .placeholder(R.drawable.photo)
+                .into(imageView)
+
+        }
+
+    }
+    fun delAll(){
+        myFundraisingList.clear()
+    }
+
+
+    fun sortMyFundraisingByMax(){
+        myFundraisingList.sortByDescending { it.toRaise }
+        notifyDataSetChanged()
+    }
+    fun sortMyFundraisingByMin(){
+        myFundraisingList.sortBy { it.toRaise }
+        notifyDataSetChanged()
+    }
+}
