@@ -2,6 +2,7 @@ package com.example.projectworkaprilkumak.adapters
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import android.os.AsyncTask
 import android.os.Handler
 import android.view.LayoutInflater
@@ -10,7 +11,6 @@ import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.ProgressBar
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
@@ -20,7 +20,7 @@ import com.example.projectworkaprilkumak.datas.FundsImage
 import com.example.projectworkaprilkumak.datas.MyFundraisingData
 import com.google.firebase.firestore.FirebaseFirestore
 
-class MyFundraisingAdapter(var context: Context,var myFundraisingList:MutableList<MyFundraisingData>) :
+class MyFundraisingAdapter(var context: Context,var myFundraisingList:MutableList<MyFundraisingData>,var editClick: onEditClick) :
     RecyclerView.Adapter<MyFundraisingAdapter.MyFundraisingHolder>(){
       var sliderList = ArrayList<FundsImage>()
       lateinit var firebaseFireStore: FirebaseFirestore
@@ -32,6 +32,7 @@ class MyFundraisingAdapter(var context: Context,var myFundraisingList:MutableLis
         var donN = binding.urgentDonatorQuantity
         var dayL = binding.UrgentLeftDays
         var edit = binding.edit
+        var share = binding.share
         var progress = binding.itemFundProgress
 
     }
@@ -55,8 +56,15 @@ class MyFundraisingAdapter(var context: Context,var myFundraisingList:MutableLis
         anim(holder.itemView)
 
         holder.edit.setOnClickListener {
-            Toast.makeText(context, "Working as well", Toast.LENGTH_SHORT).show()
+            editClick.editClick(myFundraisingList[position])
         }
+        holder.share.setOnClickListener {
+            val intent = Intent(Intent.ACTION_SEND)
+            intent.type = "text/plain"
+            intent.putExtra(Intent.EXTRA_SUBJECT,"${myFundraising.title}\n\nRaised from ${myFundraising.raised} to ${myFundraising.toRaise}\n\nDonators: ${myFundraising.donN}\n\nDars left: ${myFundraising.daysLeft}\n\nCreated by: Shahina Ismoilova")
+            context.startActivity(Intent.createChooser(intent,"Ulashish"))
+        }
+
 
     }
 
@@ -149,5 +157,8 @@ class MyFundraisingAdapter(var context: Context,var myFundraisingList:MutableLis
     fun sortMyFundraisingByMin(){
         myFundraisingList.sortBy { it.toRaise }
         notifyDataSetChanged()
+    }
+    interface onEditClick{
+        fun editClick(myFundraisingData: MyFundraisingData)
     }
 }

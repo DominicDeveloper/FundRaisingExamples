@@ -88,8 +88,9 @@ class CreateNewFundRaisingFragment : Fragment() {
             .addOnFailureListener {
                 Toast.makeText(requireContext(), "Error while uploading image, try again!", Toast.LENGTH_SHORT).show()
             }
-        val myFundraisingData = MyFundraisingData(reference.push().key!!,1,binding.title.text.toString(),1,55,binding.totalDon.text.toString().toInt(),binding.totalDon.text.toString().toInt(),binding.expireDate.text.toString().toInt(),binding.categoryView.text.toString(),binding.recipientsName.text.toString(),binding.donationProposalDoc.text.toString(),binding.medDoc.text.toString(),binding.story.text.toString(),imageUrl)
-        reference.child(reference.push().key!!).setValue(myFundraisingData).addOnCompleteListener {
+        var key = reference.push().key
+        val myFundraisingData = MyFundraisingData(key,1,binding.title.text.toString(),1,55,binding.totalDon.text.toString().toInt(),binding.totalDon.text.toString().toInt(),binding.expireDate.text.toString().toInt(),binding.categoryView.text.toString(),binding.recipientsName.text.toString(),binding.donationProposalDoc.text.toString(),binding.medDoc.text.toString(),binding.story.text.toString(),imageUrl)
+        reference.child(key!!).setValue(myFundraisingData).addOnCompleteListener {
             Toast.makeText(requireContext(), "Successfully sent!", Toast.LENGTH_SHORT).show()
         }
         clearViews()

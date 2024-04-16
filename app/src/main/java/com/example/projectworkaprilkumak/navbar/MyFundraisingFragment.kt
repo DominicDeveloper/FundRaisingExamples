@@ -22,6 +22,8 @@ import com.example.projectworkaprilkumak.database.MyBase
 import com.example.projectworkaprilkumak.databinding.FragmentMyFundraisingBinding
 import com.example.projectworkaprilkumak.datas.MyFundraisingData
 import com.example.projectworkaprilkumak.datas.MySortData
+import com.example.projectworkaprilkumak.modules.MyEditingFundData
+import com.example.projectworkaprilkumak.modules.PushingKeySaver
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
@@ -89,9 +91,11 @@ class MyFundraisingFragment : Fragment() {
     // lifecycle bo`yicha OnResumega tushganida sortlashni tekshirib ketish
     private fun sortingOnResume(){
         if (currentlySorting == "max" && list.isNotEmpty()){
+            MyAsyncTask().execute()
             sortMyFundraisingByMax()
             adapter.notifyDataSetChanged()
         }else if (list.isNotEmpty()){
+            MyAsyncTask().execute()
             sortMyFundraisingByMin()
             adapter.notifyDataSetChanged()
         }
@@ -153,6 +157,7 @@ class MyFundraisingFragment : Fragment() {
 
     // firebaseDataBase-dan ma`lumotlarni olish
     private fun getAllDataFromDatabase(){
+        list.clear()
         reference.addValueEventListener(object :ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 for (child in snapshot.children){
@@ -220,10 +225,30 @@ class MyFundraisingFragment : Fragment() {
 
     }
 
+
     // yangilash
     @SuppressLint("NotifyDataSetChanged")
     private fun refresh(){
-        adapter = MyFundraisingAdapter(requireContext(),list)
+        adapter = MyFundraisingAdapter(requireContext(),list,object :MyFundraisingAdapter.onEditClick{
+            override fun editClick(myFundraisingData: MyFundraisingData) {
+                MyEditingFundData.myFundraisingData.pushKey = myFundraisingData.pushKey
+                MyEditingFundData.myFundraisingData.id = myFundraisingData.id
+                MyEditingFundData.myFundraisingData.title = myFundraisingData.title
+                MyEditingFundData.myFundraisingData.toRaise = myFundraisingData.toRaise
+                MyEditingFundData.myFundraisingData.raised = myFundraisingData.raised
+                MyEditingFundData.myFundraisingData.imageLink = myFundraisingData.imageLink
+                MyEditingFundData.myFundraisingData.category = myFundraisingData.category
+                MyEditingFundData.myFundraisingData.daysLeft = myFundraisingData.daysLeft
+                MyEditingFundData.myFundraisingData.donN = myFundraisingData.donN
+                MyEditingFundData.myFundraisingData.donationDocuments = myFundraisingData.donationDocuments
+                MyEditingFundData.myFundraisingData.imgId = myFundraisingData.imgId
+                MyEditingFundData.myFundraisingData.medicalDocuments = myFundraisingData.medicalDocuments
+                MyEditingFundData.myFundraisingData.nameOfRecipients = myFundraisingData.nameOfRecipients
+                MyEditingFundData.myFundraisingData.story = myFundraisingData.story
+                PushingKeySaver.key = myFundraisingData.pushKey.toString()
+                findNavController().navigate(R.id.editMyFundraisingFragment)
+            }
+        })
         binding.myFundraisingRV.adapter = adapter
         binding.myFundraisingRV.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         adapter.notifyDataSetChanged()
